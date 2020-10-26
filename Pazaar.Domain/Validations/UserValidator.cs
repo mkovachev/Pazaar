@@ -5,21 +5,34 @@ using Pazaar.Domain.Models;
 namespace Pazaar.Domain.Validations
 {
     using static ModelConstants.User;
-    public class UserValidator<T> : AbstractValidator<User>
+    public abstract class UserValidator : AbstractValidator<User>
     {
-        public UserValidator()
+        public void ValidateName()
         {
-            RuleFor(user => user.Name).NotNull().WithMessage("Please add your name");
+            RuleFor(u => u.Name)
+                .NotNull().WithMessage("Please add your name")
+                .Length(NameMinLength, NameMaxLength)
+                .WithMessage("Name must be between 2 and 30 characters");
+        }
+        protected void ValidateEmail()
+        {
+            RuleFor(c => c.Email)
+                .NotEmpty()
+                .EmailAddress();
+        }
 
-            RuleFor(user => user.Name)
-                .MinimumLength(MinNameLength)
-                .WithMessage("Name must be at least 2 characters");
+        protected void ValidatePhoneNumber()
+        {
+            RuleFor(u => u.PhoneNumber)
+                .Matches(ValidPhoneNumber)
+                .WithMessage("Phone number must start with '+' sign, followed by digits only.");
+        }
 
-            RuleFor(user => user.Name)
-                .MaximumLength(MaxNameLength)
-                .WithMessage("Name must be max 30 characters");
-
-            RuleFor(user => user.Phone).SetValidator(new PhoneValidator());
+        protected void ValidateCity()
+        {
+            RuleFor(u => u.City)
+                .Length(CityMinLength, CityMaxLength)
+                .WithMessage("City must be between 3 and 30 characters");
         }
     }
 }
