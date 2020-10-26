@@ -5,11 +5,6 @@ namespace Pazaar.Domain.Model.Ad
 {
     public class Gallery : AuditEntity
     {
-        internal Gallery(IReadOnlyCollection<Image> images)
-        {
-            this.Images = images;
-        }
-
         public IReadOnlyCollection<Image> Images { get; set; } = new List<Image>();
 
     }
