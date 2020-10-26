@@ -5,9 +5,9 @@ using Pazaar.Domain.Models;
 namespace Pazaar.Domain.Validations
 {
     using static ModelConstants.Category;
-    public class CategoryValidator : AbstractValidator<Category>
+    public abstract class CategoryValidator : AbstractValidator<Category>
     {
-        public CategoryValidator()
+        protected void ValidateName()
         {
             RuleFor(c => c.Name)
                 .NotNull().WithMessage("Please add category name")
