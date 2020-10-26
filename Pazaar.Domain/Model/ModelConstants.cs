@@ -19,6 +19,12 @@
         {
             public const int TitleMinLength = 10;
             public const int TitleMaxLength = 70;
+
+            public const int DescriptionMinLength = 20;
+            public const int DescriptionMaxLength = 200;
+
+            public const decimal MinPrice = 0.1M;
+            public const decimal MaxPrice = 500000000.0M;
         }
 
         public class Category
