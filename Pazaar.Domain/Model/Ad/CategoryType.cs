@@ -2,9 +2,9 @@
 
 namespace Pazaar.Domain.Model.Ad
 {
-    internal class CategoryType
+    public class CategoryType
     {
-        public IReadOnlyCollection<Category> Categories()
+        private IReadOnlyCollection<Category> Categories()
             => new HashSet<Category>
             {
                 new Category("Real Estate"),
