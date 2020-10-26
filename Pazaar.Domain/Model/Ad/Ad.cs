@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pazaar.Domain.Model.Ad
 {
-    public class Ad : EntityAudit
+    public class Ad : AuditEntity
     {
         internal Ad(IReadOnlyCollection<Category> categories, string titel, Gallery gallery, string description, decimal price, bool isActive)
         {

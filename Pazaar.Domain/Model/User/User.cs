@@ -2,29 +2,22 @@
 
 namespace Pazaar.Domain.Model.User
 {
-    public class User : EntityAudit
+    public class User : AuditEntity
     {
-        internal User(string name, string number, string profileImage, string city)
+        public User(string name, string email, string phoneNumber, string city, string profileImage)
         {
             this.Name = name;
-            this.Phone = number;
+            this.Email = email;
+            this.PhoneNumber = phoneNumber;
             this.ProfileImage = profileImage;
             this.City = city;
         }
 
-        internal User(string name)
-        {
-            this.Name = name;
-            this.Phone = default!;
-            this.ProfileImage = default!;
-            this.City = default!;
-        }
-
-
         public string Name { get; private set; }
-        public Phone Phone { get; private set; }
-        public string ProfileImage { get; private set; }
-        public string City { get; private set; }
+        public string Email { get; private set; }
+        public string PhoneNumber { get; private set; } = default!;
+        public string City { get; private set; } = default!;
+        public string ProfileImage { get; private set; } = default!;
 
         public User UpdateName(string name)
         {
@@ -33,9 +26,9 @@ namespace Pazaar.Domain.Model.User
             return this;
         }
 
-        public User UpdatePhoneNumber(string number)
+        public User UpdatePhoneNumber(string phoneNumber)
         {
-            this.Phone = number;
+            this.PhoneNumber = phoneNumber;
 
             return this;
         }

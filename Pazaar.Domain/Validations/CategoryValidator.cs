@@ -10,11 +10,11 @@ namespace Pazaar.Domain.Validations
         public CategoryValidator()
         {
             RuleFor(c => c.Name)
-                .MinimumLength(MinTitelLength)
+                .MinimumLength(TitleMinLength)
                 .WithMessage("Name must be at least 5 characters");
 
             RuleFor(c => c.Name)
-                .MaximumLength(MaxTitelLength)
+                .MaximumLength(TitleMaxLength)
                 .WithMessage("Name must be max 30 characters");
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Pazaar.Domain.Model.Ad
 {
-    public class Category : EntityAudit
+    public class Category : AuditEntity
     {
         internal Category(string name)
         {

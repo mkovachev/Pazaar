@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pazaar.Domain.Model.Ad
 {
-    public class Gallery : EntityAudit
+    public class Gallery : AuditEntity
     {
         internal Gallery(IReadOnlyCollection<Image> images)
         {

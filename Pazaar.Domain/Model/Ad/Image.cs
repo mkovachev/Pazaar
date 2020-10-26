@@ -2,7 +2,7 @@
 
 namespace Pazaar.Domain.Model.Ad
 {
-    public class Image : EntityAudit
+    public class Image : AuditEntity
     {
         public Image(string url)
         {
