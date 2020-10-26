@@ -12,7 +12,7 @@ namespace Pazaar.Domain.Validations
             RuleFor(u => u.Name)
                 .NotNull().WithMessage("Please add your name")
                 .Length(NameMinLength, NameMaxLength)
-                .WithMessage("Name must be between 2 and 30 characters");
+                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
         }
         protected void ValidateEmail()
         {
@@ -32,7 +32,7 @@ namespace Pazaar.Domain.Validations
         {
             RuleFor(u => u.City)
                 .Length(CityMinLength, CityMaxLength)
-                .WithMessage("City must be between 3 and 30 characters");
+                .WithMessage($"City must be between {CityMinLength} and {CityMaxLength} characters");
         }
     }
 }
