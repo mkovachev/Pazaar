@@ -1,4 +1,5 @@
 ﻿using Pazaar.Domain.Common;
+using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,9 +30,22 @@ namespace Pazaar.Domain.Model.User
             return this;
         }
 
+        public User UpdateEmail(string email)
+        {
+            this.Email = email;
+
+            return this;
+        }
+
         public User UpdatePhoneNumber(string phoneNumber)
         {
             this.PhoneNumber = phoneNumber;
+
+            return this;
+        }
+        public User UpdateCity(string city)
+        {
+            this.City = city;
 
             return this;
         }
@@ -39,13 +53,6 @@ namespace Pazaar.Domain.Model.User
         public User UpdateProfileImage(string profileImage)
         {
             this.ProfileImage = profileImage;
-
-            return this;
-        }
-
-        public User UpdateCity(string city)
-        {
-            this.City = city;
 
             return this;
         }

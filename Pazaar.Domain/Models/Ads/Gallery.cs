@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pazaar.Domain.Model.Ad
+namespace Pazaar.Domain.Models.Ads
 {
     public class Gallery : AuditEntity
     {

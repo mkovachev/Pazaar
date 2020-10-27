@@ -1,6 +1,6 @@
 ﻿using Pazaar.Domain.Common;
 
-namespace Pazaar.Domain.Model.Ad
+namespace Pazaar.Domain.Models.Ads
 {
     public class Image : AuditEntity
     {

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Pazaar.Domain.Model.Ad;
 using Pazaar.Domain.Models;
 
 namespace Pazaar.Domain.Validations
