@@ -4,7 +4,7 @@ namespace Pazaar.Domain.Model.Ad
 {
     public class Category : AuditEntity
     {
-        public Category(string name)
+        internal Category(string name)
         {
             this.Name = name;
         }

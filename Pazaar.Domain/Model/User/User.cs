@@ -1,4 +1,6 @@
 ﻿using Pazaar.Domain.Common;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pazaar.Domain.Model.User
 {
@@ -18,6 +20,7 @@ namespace Pazaar.Domain.Model.User
         public string PhoneNumber { get; private set; } = default!;
         public string City { get; private set; } = default!;
         public string ProfileImage { get; private set; } = default!;
+        public IReadOnlyCollection<Ad> Ads => this.Ads.ToList().AsReadOnly();
 
         public User UpdateName(string name)
         {

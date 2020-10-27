@@ -4,6 +4,10 @@ namespace Pazaar.Domain.Model.Ad
 {
     public class Image : AuditEntity
     {
-        public string Url { get; private set; } = default!;
+        internal Image(string url)
+        {
+            this.Url = url;
+        }
+        public string Url { get; }
     }
 }

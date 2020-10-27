@@ -1,11 +1,12 @@
 ﻿using Pazaar.Domain.Common;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pazaar.Domain.Model.Ad
 {
     public class Ad : AuditEntity
     {
-        internal Ad(IReadOnlyCollection<Category> categories, string title, Gallery gallery, string description, decimal price, bool isActive)
+        public Ad(IReadOnlyCollection<Category> categories, string title, Gallery gallery, string description, decimal price, bool isActive)
         {
             this.Categories = categories;
             this.Title = title;
@@ -15,7 +16,7 @@ namespace Pazaar.Domain.Model.Ad
             this.IsActive = isActive;
         }
         public string Title { get; private set; }
-        public IReadOnlyCollection<Category> Categories { get; private set; } = new List<Category>();
+        public IReadOnlyCollection<Category> Categories => this.Categories.ToList().AsReadOnly();
         public Gallery Gallery { get; private set; }
         public string Description { get; private set; }
         public decimal Price { get; private set; }
