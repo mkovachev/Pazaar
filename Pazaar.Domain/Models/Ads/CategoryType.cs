@@ -4,14 +4,14 @@ namespace Pazaar.Domain.Models.Ads
 {
     public class CategoryType
     {
-        private IReadOnlyCollection<Category> Categories()
+        public IReadOnlyCollection<Category> Categories()
             => new HashSet<Category>
             {
                 new Category("Real Estate"),
                 new Category("Cars"),
                 new Category("Electronics"),
                 new Category("Sport"),
-                new Category("Animal"),
+                new Category("Pets"),
                 new Category("Home"),
                 new Category("Men Clothing"),
                 new Category("Men Shoes"),
