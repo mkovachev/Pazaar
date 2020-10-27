@@ -13,14 +13,14 @@ namespace Pazaar.Domain.Models.Ads
             Action act = () => new Category("");
 
             // Assert
-            act.Should().Throw<ArgumentNullException>().WithMessage("Please add category name");
+            act.Should().Throw<ArgumentNullException>().WithMessage("Please add a category name");
         }
 
         [Fact]
-        public void InvalidCategoryNameLenght_Should_Throw_Exception()
+        public void InvalidCategoryNameLength_Should_Throw_Exception()
         {
             // Act
-            Action act = () => new Category("");
+            Action act = () => new Category("Noo");
 
             // Assert
             act.Should().Throw<ArgumentException>()
