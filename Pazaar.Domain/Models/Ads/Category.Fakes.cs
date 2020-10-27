@@ -11,8 +11,7 @@ namespace Pazaar.Domain.Models.Ads
         {
             public bool CanCreate(Type type) => type == typeof(Category);
 
-            public object? Create(Type type)
-                => new Category(ValidCategoryName);
+            public object? Create(Type type) => new Category(ValidCategoryName);
 
             public Priority Priority => Priority.Default;
         }
