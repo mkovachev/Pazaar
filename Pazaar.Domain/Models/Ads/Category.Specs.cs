@@ -7,20 +7,20 @@ namespace Pazaar.Domain.Models.Ads
     public class CategorySpecs
     {
         [Fact]
-        public void CategoryWithoutName_Should_Throw_ArgumentNullException()
+        public void CreateCategoryWitEmptyName_Should_Throw_ArgumentException()
         {
             // Act
             Action act = () => new Category("");
 
             // Assert
-            act.Should().Throw<ArgumentNullException>().WithMessage("Please add a category name");
+            act.Should().Throw<ArgumentException>().WithMessage("Please add a category name");
         }
 
         [Fact]
         public void InvalidCategoryNameLength_Should_Throw_Exception()
         {
             // Act
-            Action act = () => new Category("Noo");
+            Action act = () => new Category("No");
 
             // Assert
             act.Should().Throw<ArgumentException>()
