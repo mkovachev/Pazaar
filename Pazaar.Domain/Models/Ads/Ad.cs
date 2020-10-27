@@ -17,7 +17,7 @@ namespace Pazaar.Domain.Models.Ads
         public Gallery Gallery { get; }
         public string Description { get; private set; } = default!;
         public decimal Price { get; private set; }
-        public bool IsActive { get; private set; } = default!;
+        public bool IsActive { get; private set; } = true;
 
         public Ad UpdateTitle(string title)
         {
