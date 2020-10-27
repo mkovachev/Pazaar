@@ -10,7 +10,7 @@ namespace Pazaar.Domain.Validations
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotNull().WithMessage("Please add a category name")
+                .NotEmpty().WithMessage("Please add a category name")
                 .Length(TitleMinLength, TitleMaxLength)
                 .WithMessage($"Name must be between {TitleMinLength} and {TitleMaxLength} characters");
         }
