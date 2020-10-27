@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Pazaar.Domain.Models;
+using Pazaar.Domain.Models.Ads;
 
 namespace Pazaar.Domain.Validations
 {

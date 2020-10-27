@@ -4,7 +4,7 @@ namespace Pazaar.Domain.Models.Ads
 {
     public class CategoryType
     {
-        public IReadOnlyCollection<Category> Categories()
+        public static IReadOnlyCollection<Category> Categories()
             => new HashSet<Category>
             {
                 new Category("Real Estate"),
