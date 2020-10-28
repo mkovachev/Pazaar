@@ -4,7 +4,7 @@ namespace Pazaar.Domain.Common
 {
     public abstract class Entity : IAuditable, IDeletable
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

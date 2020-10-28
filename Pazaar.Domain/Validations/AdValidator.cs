@@ -26,7 +26,6 @@ namespace Pazaar.Domain.Validations
         public void ValidateDescription()
         {
             RuleFor(ad => ad.Description)
-                //.NotEmpty().WithMessage("Please add a description")
                 .Length(DescriptionMinLength, DescriptionMaxLength)
                 .WithMessage($"Description must be between {DescriptionMinLength} and {DescriptionMaxLength} characters");
         }

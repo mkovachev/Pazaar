@@ -31,7 +31,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
              .Property(a => a.Description)
              .IsRequired()
              .HasMaxLength(DescriptionMaxLength);
-
         }
     }
 }
