@@ -13,7 +13,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitEmptyName_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new User("", "john@mail.com");
+            Action act = () => new DomainUser("", "john@mail.com");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Please add your name");
@@ -23,7 +23,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidNameLength_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new User("x", "john@mail.com");
+            Action act = () => new DomainUser("x", "john@mail.com");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -34,7 +34,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidEmail_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new User("John", "invalid mail");
+            Action act = () => new DomainUser("John", "invalid mail");
 
             // Assert
             act.Should().Throw<ArgumentException>();
@@ -44,7 +44,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidPhoneNumber_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new User("John", "john@mail.com", "invalid phone", "Sofia", "image");
+            Action act = () => new DomainUser("John", "john@mail.com", "invalid phone", "Sofia", "image");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -55,7 +55,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidCity_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new User("John", "john@mail.com", "+3591234567", "xxx", "image");
+            Action act = () => new DomainUser("John", "john@mail.com", "+3591234567", "xxx", "image");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -66,7 +66,7 @@ namespace Pazaar.Domain.Models.Users
         public void UpdateName_Should_UpdateName()
         {
             // Arrange
-            var user = A.Dummy<User>();
+            var user = A.Dummy<DomainUser>();
 
             // Act
             user.UpdateName("Joe");
@@ -79,7 +79,7 @@ namespace Pazaar.Domain.Models.Users
         public void UpdateEmail_Should_UpdateEmail()
         {
             // Arrange
-            var user = A.Dummy<User>();
+            var user = A.Dummy<DomainUser>();
 
             // Act
             user.UpdateEmail("test@test.com");
@@ -92,7 +92,7 @@ namespace Pazaar.Domain.Models.Users
         public void UpdatePhoneNumber_Should_UpdatePhoneNumber()
         {
             // Arrange
-            var user = A.Dummy<User>();
+            var user = A.Dummy<DomainUser>();
 
             // Act
             user.UpdatePhoneNumber("+359111");
@@ -105,7 +105,7 @@ namespace Pazaar.Domain.Models.Users
         public void UpdateCity_Should_UpdateCity()
         {
             // Arrange
-            var user = A.Dummy<User>();
+            var user = A.Dummy<DomainUser>();
 
             // Act
             user.UpdateCity("Burgas");
@@ -118,7 +118,7 @@ namespace Pazaar.Domain.Models.Users
         public void UpdateProfileImage_Should_UpdateProfileImage()
         {
             // Arrange
-            var user = A.Dummy<User>();
+            var user = A.Dummy<DomainUser>();
 
             // Act
             user.UpdateProfileImage("testImage");

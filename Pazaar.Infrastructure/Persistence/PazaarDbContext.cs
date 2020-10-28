@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pazaar.Domain.Common;
-using Pazaar.Domain.Model.Users;
 using Pazaar.Domain.Models.Ads;
+using Pazaar.Infrastructure.Identity;
 using System;
 using System.Linq;
 using System.Reflection;

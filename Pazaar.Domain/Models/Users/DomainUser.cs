@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace Pazaar.Domain.Model.Users
 {
-    public class User : Entity
+    public class DomainUser : Entity
     {
-        public User(string name, string email)
+        public DomainUser(string name, string email)
         {
             this.Name = name;
             this.Email = email;
 
         }
-        public User(string name, string email, string phoneNumber, string city, string profileImage)
+        public DomainUser(string name, string email, string phoneNumber, string city, string profileImage)
         {
             this.Name = name;
             this.Email = email;
@@ -29,34 +29,34 @@ namespace Pazaar.Domain.Model.Users
         public string ProfileImage { get; private set; } = default!;
         public IReadOnlyCollection<Ad> Ads => this.Ads.ToList().AsReadOnly();
 
-        public User UpdateName(string name)
+        public DomainUser UpdateName(string name)
         {
             this.Name = name;
 
             return this;
         }
 
-        public User UpdateEmail(string email)
+        public DomainUser UpdateEmail(string email)
         {
             this.Email = email;
 
             return this;
         }
 
-        public User UpdatePhoneNumber(string phoneNumber)
+        public DomainUser UpdatePhoneNumber(string phoneNumber)
         {
             this.PhoneNumber = phoneNumber;
 
             return this;
         }
-        public User UpdateCity(string city)
+        public DomainUser UpdateCity(string city)
         {
             this.City = city;
 
             return this;
         }
 
-        public User UpdateProfileImage(string profileImage)
+        public DomainUser UpdateProfileImage(string profileImage)
         {
             this.ProfileImage = profileImage;
 
