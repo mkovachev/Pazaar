@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    internal class PazaarDbContext : IdentityDbContext<User>
+    internal class PazaarDbContext : IdentityDbContext<IUser>
     {
         public PazaarDbContext(DbContextOptions<PazaarDbContext> options) : base(options)
         {
@@ -29,25 +29,33 @@ namespace Pazaar.Infrastructure.Persistence
             base.OnModelCreating(builder);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override Task<int> SaveChangesAsync(bool hasSuccess, CancellationToken cancellationToken = default)
         {
-            var entries = ChangeTracker
+            var filtered = ChangeTracker
                 .Entries()
                 .Where(e => e.Entity is Entity && (
                         e.State == EntityState.Added
-                        || e.State == EntityState.Modified));
+                        || e.State == EntityState.Modified)
+                        || e.State == EntityState.Deleted);
 
-            foreach (var entity in entries)
+            foreach (var entry in filtered)
             {
-                ((Entity)entity.Entity).ModifiedOn = DateTime.Now;
-
-                if (entity.State == EntityState.Added)
+                switch (entry.State)
                 {
-                    ((Entity)entity.Entity).CreatedOn = DateTime.Now;
+                    case EntityState.Added:
+                        ((Entity)entry.Entity).CreatedOn = DateTime.Now;
+                        break;
+                    case EntityState.Modified:
+                        ((Entity)entry.Entity).ModifiedOn = DateTime.Now;
+                        break;
+                    case EntityState.Deleted:
+                        ((Entity)entry.Entity).DeletedOn = DateTime.Now;
+                        ((Entity)entry.Entity).IsDeleted = true;
+                        break;
                 }
             }
 
-            return base.SaveChangesAsync(cancellationToken);
+            return base.SaveChangesAsync(hasSuccess, cancellationToken);
         }
     }
 }
