@@ -18,7 +18,7 @@ namespace Pazaar.Domain.Models.Ads
             this.Title = title;
             this.Gallery = gallery;
             this.Price = price;
-            this.Description = default!;
+            this.Description = description;
         }
         public string Title { get; private set; }
         public ICollection<Category> Categories => this.Categories.ToList().AsReadOnly();
