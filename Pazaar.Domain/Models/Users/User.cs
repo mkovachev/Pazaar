@@ -3,7 +3,7 @@ using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pazaar.Domain.Model.User
+namespace Pazaar.Domain.Model.Users
 {
     public class User : AuditEntity
     {

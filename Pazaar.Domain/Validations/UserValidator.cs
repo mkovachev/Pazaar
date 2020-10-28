@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Pazaar.Domain.Model.User;
+using Pazaar.Domain.Model.Users;
 using Pazaar.Domain.Models;
 
 namespace Pazaar.Domain.Validations
@@ -10,7 +10,7 @@ namespace Pazaar.Domain.Validations
         public void ValidateName()
         {
             RuleFor(u => u.Name)
-                .NotNull().WithMessage("Please add your name")
+                .NotEmpty().WithMessage("Please add your name")
                 .Length(NameMinLength, NameMaxLength)
                 .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
         }

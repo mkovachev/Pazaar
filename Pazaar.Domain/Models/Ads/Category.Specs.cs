@@ -4,10 +4,11 @@ using Xunit;
 
 namespace Pazaar.Domain.Models.Ads
 {
+    using static ModelConstants.Category;
     public class CategorySpecs
     {
         [Fact]
-        public void CreateCategoryWitEmptyName_Should_Throw_ArgumentException()
+        public void CreateCategoryWitEmptyName_Should_ThrowException()
         {
             // Act
             Action act = () => new Category("");
@@ -17,14 +18,14 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         [Fact]
-        public void InvalidCategoryNameLength_Should_Throw_Exception()
+        public void InvalidCategoryNameLength_Should_ThrowException()
         {
             // Act
             Action act = () => new Category("No");
 
             // Assert
             act.Should().Throw<ArgumentException>()
-                .WithMessage($"Name must be between 5 and 30 characters");
+                .WithMessage($"Name must be between {TitleMinLength} and {TitleMaxLength} characters");
         }
     }
 }

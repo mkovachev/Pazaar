@@ -12,6 +12,14 @@ namespace Pazaar.Domain.Models.Ads
             this.Gallery = gallery;
             this.Price = price;
         }
+
+        public Ad(string title, Gallery gallery, decimal price, string description)
+        {
+            this.Title = title;
+            this.Gallery = gallery;
+            this.Price = price;
+            this.Description = default!;
+        }
         public string Title { get; private set; }
         public ICollection<Category> Categories => this.Categories.ToList().AsReadOnly();
         public Gallery Gallery { get; }

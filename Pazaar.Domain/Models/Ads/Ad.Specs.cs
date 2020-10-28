@@ -5,30 +5,32 @@ using Xunit;
 
 namespace Pazaar.Domain.Models.Ads
 {
+    using static ModelConstants.Ad;
     public class AdSpecs
     {
         [Fact]
-        public void CreateCategoryWitEmptyTitle_Should_Throw_ArgumentException()
+        public void CreateCategoryWitEmptyTitle_Should_ThrowException()
         {
             // Act
             Action act = () => new Ad("", new Gallery(), 1000.00M);
 
             // Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Please add a category name");
+            act.Should().Throw<ArgumentException>().WithMessage("Please add a title");
         }
 
         [Fact]
-        public void CreateCategoryWithInvalidTitleLength_Should_Throw_ArgumentException()
+        public void CreateCategoryWithInvalidTitleLength_Should_ThrowException()
         {
             // Act
             Action act = () => new Ad("Invalid", new Gallery(), 1000.00M);
 
             // Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Title must be between 10 and 70 characters");
+            act.Should().Throw<ArgumentException>()
+                .WithMessage($"Title must be between {TitleMinLength} and {TitleMaxLength} characters");
         }
 
         [Fact]
-        public void CreateCategoryWithInvalidPriceFormat_Should_Throw_ArgumentException()
+        public void CreateCategoryWithInvalidPriceFormat_Should_ThrowException()
         {
             // Act
             Action act = () => new Ad("Selling my Audi", new Gallery(), 1);
@@ -38,13 +40,14 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         [Fact]
-        public void CreateCategoryWithInvalidPrice_Should_Throw_ArgumentException()
+        public void CreateCategoryWithInvalidPrice_Should_ThrowException()
         {
             // Act
             Action act = () => new Ad("Selling my Audi", new Gallery(), -100);
 
             // Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Price must be between 0.1M and 500000000.00M");
+            act.Should().Throw<ArgumentException>()
+                .WithMessage($"Price must be between {MinPrice} and {MaxPrice}");
         }
 
         [Fact]
@@ -67,10 +70,10 @@ namespace Pazaar.Domain.Models.Ads
             var ad = A.Dummy<Ad>();
 
             // Act
-            ad.UpdateDescription("invalid description");
+            Action act = () => ad.UpdateDescription("invalid description");
 
             // Assert
-            ad.Description.Should().BeEmpty();
+            act.Should().Throw<ArgumentException>().WithMessage($"Description must be between {DescriptionMinLength} and {DescriptionMaxLength} characters");
         }
 
         [Fact]
@@ -113,7 +116,7 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         [Fact]
-        public void AddCategory_Should_Add_Category_In_Ad_CategoryList()
+        public void AddCategory_Should_Add_Category_Into_Categories()
         {
             // Arrange
             var ad = A.Dummy<Ad>();
@@ -127,12 +130,10 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         [Fact]
-        public void DeleteCategory_Should_Remove_Category_From_Ad_CategoryList()
+        public void DeleteCategory_Should_Remove_Category_From_Categories()
         {
             // Arrange
             var ad = A.Dummy<Ad>();
-
-            var category = new Category("Pets");
 
             // Act
             ad.DeleteCategory(new Category("Pets"));
