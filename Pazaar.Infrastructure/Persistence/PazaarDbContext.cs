@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Pazaar.Domain.Common;
 using Pazaar.Domain.Model.Users;
 using Pazaar.Domain.Models.Ads;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    internal class PazaarDbContext : DbContext
+    internal class PazaarDbContext : IdentityDbContext<User>
     {
         public PazaarDbContext(DbContextOptions<PazaarDbContext> options) : base(options)
         {
@@ -20,7 +21,6 @@ namespace Pazaar.Infrastructure.Persistence
         public DbSet<Category> Categories { get; set; } = default!;
         public DbSet<Gallery> Galleries { get; set; } = default!;
         public DbSet<Image> Images { get; set; } = default!;
-        public DbSet<User> Users { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -25,7 +25,7 @@ namespace Pazaar.Domain.Models.Ads
 
             // Assert
             act.Should().Throw<ArgumentException>()
-                .WithMessage($"Name must be between {TitleMinLength} and {TitleMaxLength} characters");
+                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
         }
     }
 }

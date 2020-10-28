@@ -29,8 +29,8 @@
 
         public class Category
         {
-            public const int TitleMinLength = 5;
-            public const int TitleMaxLength = 30;
+            public const int NameMinLength = 5;
+            public const int NameMaxLength = 30;
         }
 
         public class Image

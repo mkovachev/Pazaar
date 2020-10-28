@@ -11,26 +11,36 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Ad> builder)
         {
             builder
-                .HasKey(a => a.Id);
+                .HasKey(ad => ad.Id);
 
             builder
-              .Property(a => a.Title)
+              .Property(ad => ad.Title)
               .IsRequired()
               .HasMaxLength(TitleMaxLength);
 
             builder
-              .Property(a => a.Gallery)
+              .Property(ad => ad.Gallery)
               .IsRequired();
 
             builder
-             .Property(a => a.Price)
+             .Property(ad => ad.Price)
              .IsRequired()
              .HasMaxLength((int)MaxPrice);
 
             builder
-             .Property(a => a.Description)
+             .Property(ad => ad.Description)
              .IsRequired()
              .HasMaxLength(DescriptionMaxLength);
+
+            builder
+             .Property(ad => ad.IsActive);
+
+            builder
+                .HasMany(ad => ad.Categories)
+                .WithOne()
+                .Metadata
+                .PrincipalToDependent
+                .SetField("Categories");
         }
     }
 }

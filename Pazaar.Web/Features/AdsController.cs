@@ -1,8 +1,8 @@
-﻿using Pazaar.Domain.Model.Users;
+﻿using Microsoft.AspNetCore.Mvc;
+using Pazaar.Domain.Model.Users;
 using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Pazaar.Web.Features
 {

@@ -11,8 +11,8 @@ namespace Pazaar.Domain.Validations
         {
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("Please add a category name")
-                .Length(TitleMinLength, TitleMaxLength)
-                .WithMessage($"Name must be between {TitleMinLength} and {TitleMaxLength} characters");
+                .Length(NameMinLength, NameMaxLength)
+                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
         }
     }
 }
