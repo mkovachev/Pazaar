@@ -1,4 +1,4 @@
-﻿using Pazaar.Domain.Model.Users;
+﻿using Pazaar.Domain.Model.Customer;
 
 namespace Pazaar.Application.Features.Identity
 {

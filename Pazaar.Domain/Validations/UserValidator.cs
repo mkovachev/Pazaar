@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Pazaar.Domain.Model.Users;
+using Pazaar.Domain.Model.Customer;
 using Pazaar.Domain.Models;
 
 namespace Pazaar.Domain.Validations

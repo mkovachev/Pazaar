@@ -1,6 +1,6 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
-using Pazaar.Domain.Model.Users;
+using Pazaar.Domain.Model.Customer;
 using System;
 using Xunit;
 

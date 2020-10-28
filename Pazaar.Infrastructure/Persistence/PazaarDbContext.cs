@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    internal class PazaarDbContext : IdentityDbContext<IUser>
+    internal class PazaarDbContext : IdentityDbContext<User>
     {
         public PazaarDbContext(DbContextOptions<PazaarDbContext> options) : base(options)
         {

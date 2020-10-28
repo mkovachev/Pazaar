@@ -3,7 +3,7 @@ using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pazaar.Domain.Model.Users
+namespace Pazaar.Domain.Model.Customer
 {
     public class Customer : Entity
     {

@@ -2,7 +2,7 @@
 
 namespace Pazaar.Infrastructure.Identity
 {
-    public class IUser : IdentityUser
+    public class User : IdentityUser
     {
     }
 }

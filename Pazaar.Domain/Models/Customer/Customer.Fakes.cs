@@ -1,5 +1,5 @@
 ﻿using FakeItEasy;
-using Pazaar.Domain.Model.Users;
+using Pazaar.Domain.Model.Customer;
 using System;
 
 namespace Pazaar.Domain.Models.Users
