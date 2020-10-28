@@ -7,6 +7,12 @@ namespace Pazaar.Domain.Model.Users
 {
     public class User : AuditEntity
     {
+        public User(string name, string email)
+        {
+            this.Name = name;
+            this.Email = email;
+
+        }
         public User(string name, string email, string phoneNumber, string city, string profileImage)
         {
             this.Name = name;
