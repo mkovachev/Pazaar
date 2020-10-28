@@ -8,9 +8,9 @@ namespace Pazaar.Domain.Models.Users
     {
         public class CategoryDummyFactory : IDummyFactory
         {
-            public bool CanCreate(Type type) => type == typeof(DomainUser);
+            public bool CanCreate(Type type) => type == typeof(Customer);
 
-            public object? Create(Type type) => new DomainUser("John", "john@mail.com", "+3591234567", "Sofia", "image");
+            public object? Create(Type type) => new Customer("John", "john@mail.com", "+3591234567", "Sofia", "image");
 
             public Priority Priority => Priority.Default;
         }
