@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Pazaar.Domain.Model.Users
 {
-    public class User : AuditEntity
+    public class User : Entity, Entity
     {
         public User(string name, string email)
         {

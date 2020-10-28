@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pazaar.Domain.Models.Ads
 {
-    public class Ad : AuditEntity
+    public class Ad : Entity
     {
         public Ad(string title, Gallery gallery, decimal price)
         {
@@ -23,8 +23,8 @@ namespace Pazaar.Domain.Models.Ads
         public string Title { get; private set; }
         public ICollection<Category> Categories => this.Categories.ToList().AsReadOnly();
         public Gallery Gallery { get; }
-        public string Description { get; private set; } = default!;
         public decimal Price { get; private set; }
+        public string Description { get; private set; } = default!;
         public bool IsActive { get; private set; } = true;
 
         public Ad UpdateTitle(string title)
