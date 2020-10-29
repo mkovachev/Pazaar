@@ -11,21 +11,21 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Ad> builder)
         {
             builder
-                .HasKey(ad => ad.Id);
-
-            builder
               .Property(ad => ad.Title)
-              .IsRequired()
-              .HasMaxLength(TitleMaxLength);
-
-            builder
-              .Property(ad => ad.Gallery)
+              .HasMaxLength(TitleMaxLength)
               .IsRequired();
 
             builder
+              .HasOne(ad => ad.Gallery)
+              .WithMany()
+              .HasForeignKey("GalleryId")
+              .OnDelete(DeleteBehavior.Restrict);
+
+            builder
              .Property(ad => ad.Price)
-             .IsRequired()
-             .HasMaxLength((int)MaxPrice);
+             .HasMaxLength((int)MaxPrice)
+             .HasColumnType("decimal(18,2)")
+             .IsRequired();
 
             builder
              .Property(ad => ad.Description)

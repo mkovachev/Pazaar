@@ -2,7 +2,7 @@
 
 namespace Pazaar.Application.Features.Identity
 {
-    public interface IDomainUser
+    public interface IUser
     {
         void BecomeCustomer(Customer customer);
     }

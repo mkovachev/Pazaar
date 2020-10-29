@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Common;
 using Pazaar.Domain.Models.Ads;
 using Pazaar.Infrastructure.Identity;
-using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -13,8 +13,14 @@ namespace Pazaar.Infrastructure.Persistence
 {
     internal class PazaarDbContext : IdentityDbContext<User>
     {
-        public PazaarDbContext(DbContextOptions<PazaarDbContext> options) : base(options)
+        private readonly ICurrentUserService userService;
+        private readonly IDateTime dateTime;
+        public PazaarDbContext(DbContextOptions<PazaarDbContext> options, ICurrentUserService userService,
+            IDateTime dateTime)
+            : base(options)
         {
+            this.userService = userService;
+            this.dateTime = dateTime;
         }
 
         public DbSet<Ad> Ads { get; set; } = default!;
@@ -29,10 +35,11 @@ namespace Pazaar.Infrastructure.Persistence
             base.OnModelCreating(builder);
         }
 
-        public override Task<int> SaveChangesAsync(bool hasSuccess, CancellationToken cancellationToken = default)
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var filtered = ChangeTracker
-                .Entries()
+            var filtered =
+                ChangeTracker
+                .Entries<AuditableEntity>()
                 .Where(e => e.Entity is AuditableEntity && (
                         e.State == EntityState.Added
                         || e.State == EntityState.Modified)
@@ -43,19 +50,22 @@ namespace Pazaar.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        ((AuditableEntity)entry.Entity).CreatedOn = DateTime.Now;
+                        entry.Entity.CreatedBy = userService.Id;
+                        entry.Entity.CreatedOn = dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        ((AuditableEntity)entry.Entity).ModifiedOn = DateTime.Now;
+                        entry.Entity.LastModifiedBy = userService.Id;
+                        entry.Entity.ModifiedOn = dateTime.Now;
                         break;
                     case EntityState.Deleted:
-                        ((AuditableEntity)entry.Entity).DeletedOn = DateTime.Now;
-                        ((AuditableEntity)entry.Entity).IsDeleted = true;
+                        entry.Entity.DeleteBy = userService.Id;
+                        entry.Entity.DeletedOn = dateTime.Now;
+                        entry.Entity.IsDeleted = true;
                         break;
                 }
             }
 
-            return base.SaveChangesAsync(hasSuccess, cancellationToken);
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

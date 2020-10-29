@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectCapability Include="DynamicFileNesting" />
   </ItemGroup>
 
@@ -16,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Features\Identity\Commands\Register\" />
+    <Folder Include="Features\Ad\" />
+    <Folder Include="Features\Customer\" />
   </ItemGroup>
 
 </Project>
