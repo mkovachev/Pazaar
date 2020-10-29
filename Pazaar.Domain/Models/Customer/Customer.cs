@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Pazaar.Domain.Model.Customer
 {
-    public class Customer : AuditableEntity
+    public class Customer : AuditableEntity, IAggregateRoot
     {
         internal Customer(string name, string email, string phoneNumber, string city, string profileImage)
         {
