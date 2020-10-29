@@ -4,7 +4,7 @@ using Pazaar.Domain.Models;
 
 namespace Pazaar.Domain.Validations
 {
-    using static ModelConstants.User;
+    using static ModelConstants.Customer;
     public abstract class CustomerValidator : AbstractValidator<Customer>
     {
         public void ValidateName()

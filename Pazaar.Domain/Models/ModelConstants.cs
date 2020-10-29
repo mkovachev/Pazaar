@@ -2,7 +2,7 @@
 {
     public class ModelConstants
     {
-        public class User
+        public class Customer
         {
             public const int NameMinLength = 2;
             public const int NameMaxLength = 30;

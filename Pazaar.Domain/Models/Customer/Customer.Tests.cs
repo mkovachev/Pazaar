@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Pazaar.Domain.Models.Users
 {
-    using static ModelConstants.User;
+    using static ModelConstants.Customer;
     public class CustomerTests
     {
         [Fact]
