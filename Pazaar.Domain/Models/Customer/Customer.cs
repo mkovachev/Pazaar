@@ -5,15 +5,9 @@ using System.Linq;
 
 namespace Pazaar.Domain.Model.Customer
 {
-    public class Customer : Entity
+    public class Customer : AuditableEntity
     {
-        public Customer(string name, string email)
-        {
-            this.Name = name;
-            this.Email = email;
-
-        }
-        public Customer(string name, string email, string phoneNumber, string city, string profileImage)
+        internal Customer(string name, string email, string phoneNumber, string city, string profileImage)
         {
             this.Name = name;
             this.Email = email;
@@ -22,12 +16,19 @@ namespace Pazaar.Domain.Model.Customer
             this.City = city;
         }
 
+        internal Customer(string name, string email)
+        {
+            this.Name = name;
+            this.Email = email;
+
+        }
+
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string PhoneNumber { get; private set; } = default!;
         public string City { get; private set; } = default!;
         public string ProfileImage { get; private set; } = default!;
-        public IReadOnlyCollection<Ad> Ads => this.Ads.ToList().AsReadOnly();
+        public IList<Ad> Ads { get; } = new List<Ad>().AsReadOnly();
 
         public Customer UpdateName(string name)
         {
@@ -61,6 +62,28 @@ namespace Pazaar.Domain.Model.Customer
             this.ProfileImage = profileImage;
 
             return this;
+        }
+
+        public void AddAd(Ad ad)
+        {
+            var adTitle = ad.Title;
+
+            if (this.Ads.Any(ad => ad.Title == adTitle))
+            {
+                return;
+            }
+
+            this.Ads.Add(ad);
+        }
+
+        public void DeleteCategory(Ad ad)
+        {
+            var adTitle = ad.Title;
+
+            if (this.Ads.Any(ad => ad.Title == adTitle))
+            {
+                this.Ads.Remove(ad);
+            }
         }
     }
 }

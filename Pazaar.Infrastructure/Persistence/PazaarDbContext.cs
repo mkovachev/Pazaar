@@ -33,7 +33,7 @@ namespace Pazaar.Infrastructure.Persistence
         {
             var filtered = ChangeTracker
                 .Entries()
-                .Where(e => e.Entity is Entity && (
+                .Where(e => e.Entity is AuditableEntity && (
                         e.State == EntityState.Added
                         || e.State == EntityState.Modified)
                         || e.State == EntityState.Deleted);
@@ -43,14 +43,14 @@ namespace Pazaar.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        ((Entity)entry.Entity).CreatedOn = DateTime.Now;
+                        ((AuditableEntity)entry.Entity).CreatedOn = DateTime.Now;
                         break;
                     case EntityState.Modified:
-                        ((Entity)entry.Entity).ModifiedOn = DateTime.Now;
+                        ((AuditableEntity)entry.Entity).ModifiedOn = DateTime.Now;
                         break;
                     case EntityState.Deleted:
-                        ((Entity)entry.Entity).DeletedOn = DateTime.Now;
-                        ((Entity)entry.Entity).IsDeleted = true;
+                        ((AuditableEntity)entry.Entity).DeletedOn = DateTime.Now;
+                        ((AuditableEntity)entry.Entity).IsDeleted = true;
                         break;
                 }
             }

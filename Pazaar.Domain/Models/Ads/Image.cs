@@ -2,12 +2,16 @@
 
 namespace Pazaar.Domain.Models.Ads
 {
-    public class Image : Entity
+    public class Image : AuditableEntity
     {
-        internal Image(string url)
+        internal Image(string name, string url)
         {
+            this.Name = name;
             this.Url = url;
         }
+
+        public int Id { get; }
+        public string Name { get; }
         public string Url { get; }
     }
 }

@@ -5,7 +5,7 @@ using Xunit;
 namespace Pazaar.Domain.Models.Ads
 {
     using static ModelConstants.Category;
-    public class CategorySpecs
+    public class CategoryTests
     {
         [Fact]
         public void CreateCategoryWitEmptyName_Should_ThrowException()

@@ -7,7 +7,7 @@ using Xunit;
 namespace Pazaar.Domain.Models.Users
 {
     using static ModelConstants.User;
-    public class UserSpecs
+    public class CustomerTests
     {
         [Fact]
         public void CreateUserWitEmptyName_Should_Throw_ArgumentException()

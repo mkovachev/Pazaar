@@ -33,8 +33,18 @@
             public const int NameMaxLength = 30;
         }
 
+        public class Galley
+        {
+            public const int NameMinLength = 5;
+            public const int NameMaxLength = 30;
+            public const int ImageUrlMinLength = 4;
+            public const int ImageUrlMaxLength = 2048;
+        }
+
         public class Image
         {
+            public const int NameMinLength = 5;
+            public const int NameMaxLength = 30;
             public const int ImageUrlMinLength = 4;
             public const int ImageUrlMaxLength = 2048;
         }

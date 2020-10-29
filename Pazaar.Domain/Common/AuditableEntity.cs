@@ -2,10 +2,8 @@
 
 namespace Pazaar.Domain.Common
 {
-    public abstract class Entity : IAuditable, IDeletable
+    public abstract class AuditableEntity
     {
-        public int Id { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
         public DateTime ModifiedOn { get; set; }
@@ -13,6 +11,8 @@ namespace Pazaar.Domain.Common
         public DateTime DeletedOn { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public string ModifiedBy { get; set; }
 
     }
 }

@@ -4,28 +4,30 @@ using System.Linq;
 
 namespace Pazaar.Domain.Models.Ads
 {
-    public class Ad : Entity
+    public class Ad : AuditableEntity, IAggregateRoot
     {
-        public Ad(string title, Gallery gallery, decimal price)
+        internal Ad(string title, Gallery gallery, decimal price)
         {
             this.Title = title;
             this.Gallery = gallery;
             this.Price = price;
         }
 
-        public Ad(string title, Gallery gallery, decimal price, string description)
+        internal Ad(string title, Gallery gallery, decimal price, string description)
         {
             this.Title = title;
             this.Gallery = gallery;
             this.Price = price;
             this.Description = description;
         }
+
+        public int Id { get; }
         public string Title { get; private set; }
-        public ICollection<Category> Categories => this.Categories.ToList().AsReadOnly();
         public Gallery Gallery { get; }
         public decimal Price { get; private set; }
         public string Description { get; private set; } = default!;
         public bool IsActive { get; private set; } = true;
+        public IList<Category> Categories { get; } = new List<Category>().AsReadOnly();
 
         public Ad UpdateTitle(string title)
         {

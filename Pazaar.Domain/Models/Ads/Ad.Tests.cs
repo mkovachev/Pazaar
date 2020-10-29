@@ -6,7 +6,7 @@ using Xunit;
 namespace Pazaar.Domain.Models.Ads
 {
     using static ModelConstants.Ad;
-    public class AdSpecs
+    public class AdTests
     {
         [Fact]
         public void CreateCategoryWitEmptyTitle_Should_ThrowException()
@@ -134,6 +134,7 @@ namespace Pazaar.Domain.Models.Ads
         {
             // Arrange
             var ad = A.Dummy<Ad>();
+            ad.AddCategory(new Category("Pets"));
 
             // Act
             ad.DeleteCategory(new Category("Pets"));
