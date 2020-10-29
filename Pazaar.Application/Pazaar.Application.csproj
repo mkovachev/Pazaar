@@ -23,6 +23,7 @@
     <Folder Include="Features\Identity\Commands\Register\" />
     <Folder Include="Features\Ad\" />
     <Folder Include="Features\Customer\" />
+    <Folder Include="Behaviours\" />
   </ItemGroup>
 
 </Project>
