@@ -37,13 +37,7 @@ namespace Pazaar.Infrastructure
                                  .Assembly.FullName)));
             }
 
-            services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
-
             services.AddHttpContextAccessor();
-
-
-            //services.AddIdentityServer()
-            //    .AddApiAuthorization<User, PazaarDbContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();

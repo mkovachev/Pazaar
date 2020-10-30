@@ -4,7 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Pazaar.Application;
+using Pazaar.Domain;
 using Pazaar.Infrastructure;
+using Pazaar.Web;
 
 namespace Pazaar.Startup
 {
@@ -19,8 +22,11 @@ namespace Pazaar.Startup
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddInfrastructure(this.Configuration);
+            services
+                .AddDomain()
+                .AddApplication(this.Configuration)
+                .AddInfrastructure(this.Configuration)
+                .AddWebComponents();
 
             services.AddSwaggerGen(c =>
             {
