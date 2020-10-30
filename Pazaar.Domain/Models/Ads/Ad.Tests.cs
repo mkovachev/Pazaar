@@ -12,7 +12,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWitEmptyTitle_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("", new Gallery(), 1000.00M);
+            Action act = () => new Ad("", new Gallery(), 1000.00M, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Please add a title");
@@ -22,7 +22,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidTitleLength_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Invalid", new Gallery(), 1000.00M);
+            Action act = () => new Ad("Invalid", new Gallery(), 1000.00M, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -33,7 +33,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidPriceFormat_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Selling my Audi", new Gallery(), 1);
+            Action act = () => new Ad("Selling my Audi", new Gallery(), 1, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Price must have exact 2-digits after the decimal point");
@@ -43,7 +43,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidPrice_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Selling my Audi", new Gallery(), -100);
+            Action act = () => new Ad("Selling my Audi", new Gallery(), -100, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -83,10 +83,10 @@ namespace Pazaar.Domain.Models.Ads
             var ad = A.Dummy<Ad>();
 
             // Act
-            ad.UpdateDescription("my updated description");
+            ad.UpdateDescription("some valid description");
 
             // Assert
-            ad.Description.Should().Be("my updated description");
+            ad.Description.Should().Be("some valid description");
         }
 
         [Fact]

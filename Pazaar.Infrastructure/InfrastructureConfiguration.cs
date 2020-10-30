@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Pazaar.Application.Interfaces;
 using Pazaar.Infrastructure.Identity;
 using Pazaar.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Authentication;
 using Pazaar.Infrastructure.Services;
 
 namespace Pazaar.Infrastructure

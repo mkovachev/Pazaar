@@ -11,9 +11,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder
-                .HasKey(a => a.Id);
-
-            builder
               .Property(a => a.Name)
               .IsRequired()
               .HasMaxLength(NameMaxLength);

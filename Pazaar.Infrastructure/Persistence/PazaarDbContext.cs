@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Common;
-using Pazaar.Domain.Model.Customer;
 using Pazaar.Domain.Models.Ads;
 using Pazaar.Infrastructure.Identity;
 using System.Linq;

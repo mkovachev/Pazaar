@@ -10,7 +10,7 @@ namespace Pazaar.Domain.Models.Ads
         {
             public bool CanCreate(Type type) => type == typeof(Ad);
 
-            public object? Create(Type type) => new Ad("Selling my Audi", new Gallery(), 1000.00M);
+            public object? Create(Type type) => new Ad("Selling my Audi", new Gallery(), 1000.00M, "some valid description");
 
             public Priority Priority => Priority.Default;
         }
@@ -20,7 +20,8 @@ namespace Pazaar.Domain.Models.Ads
                    .CustomInstantiator(f => new Ad(
                        f.Random.String(5),
                        A.Dummy<Gallery>(),
-                       f.Random.Number(1, 100)))
+                       f.Random.Number(1, 100),
+                       f.Random.String(20)))
                    .Generate();
     }
 }

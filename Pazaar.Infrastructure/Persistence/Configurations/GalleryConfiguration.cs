@@ -9,9 +9,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Gallery> builder)
         {
             builder
-                .HasKey(g => g.Id);
-
-            builder
                 .HasMany(g => g.Images)
                 .WithOne()
                 .Metadata

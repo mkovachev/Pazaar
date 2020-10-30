@@ -7,15 +7,7 @@ namespace Pazaar.Domain.Models.Ads
     public class Ad : AuditableEntity, IAggregateRoot
     {
         private readonly HashSet<Category> categories;
-        internal Ad(string title, Gallery gallery, decimal price)
-        {
-            this.Title = title;
-            this.Gallery = gallery;
-            this.Price = price;
-            this.categories = new HashSet<Category>();
-        }
-
-        internal Ad(string title, Gallery gallery, decimal price, string description)
+        internal Ad(string title, Gallery gallery, decimal price, string description, bool isActive = true)
         {
             this.Title = title;
             this.Gallery = gallery;
@@ -24,11 +16,22 @@ namespace Pazaar.Domain.Models.Ads
             this.categories = new HashSet<Category>();
         }
 
+        // for EF core only
+        private Ad(string title, decimal price, string description, bool isActive = true)
+        {
+            this.Title = title;
+            this.Price = price;
+            this.Description = description;
+            this.categories = new HashSet<Category>();
+
+            this.Gallery = default!;
+        }
+
         public int Id { get; private set; }
         public string Title { get; private set; }
         public Gallery Gallery { get; private set; }
         public decimal Price { get; private set; }
-        public string Description { get; private set; } = default!;
+        public string Description { get; private set; }
         public bool IsActive { get; private set; } = true;
         public IReadOnlyCollection<Category> Categories => this.categories.ToList().AsReadOnly();
 
