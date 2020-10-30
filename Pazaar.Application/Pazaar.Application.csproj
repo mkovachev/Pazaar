@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,20 +7,10 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Common\**" />
-    <Compile Remove="Features\Customers\**" />
-    <Compile Remove="Features\Identity\**" />
-    <EmbeddedResource Remove="Common\**" />
-    <EmbeddedResource Remove="Features\Customers\**" />
-    <EmbeddedResource Remove="Features\Identity\**" />
-    <None Remove="Common\**" />
-    <None Remove="Features\Customers\**" />
-    <None Remove="Features\Identity\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.9" />
@@ -34,9 +24,5 @@
     <ProjectReference Include="..\Pazaar.Domain\Pazaar.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Ads\" />
-    <Folder Include="Behaviours\" />
-  </ItemGroup>
 
 </Project>

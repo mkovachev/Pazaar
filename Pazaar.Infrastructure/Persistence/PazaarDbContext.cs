@@ -13,21 +13,20 @@ namespace Pazaar.Infrastructure.Persistence
 {
     internal class PazaarDbContext : IdentityDbContext<User>, IPazaarDbContext
     {
-        //private readonly IUserService userService;
+        private readonly ICurrentUserService userService;
         private readonly IDateTime dateTime;
         public PazaarDbContext(DbContextOptions<PazaarDbContext> options,
-            IDateTime dateTime)
+            IDateTime dateTime, ICurrentUserService userService)
             : base(options)
         {
-            //this.userService = userService;
             this.dateTime = dateTime;
+            this.userService = userService;
         }
 
         public DbSet<Ad> Ads { get; set; } = default!;
         public DbSet<Category> Categories { get; set; } = default!;
         public DbSet<Gallery> Galleries { get; set; } = default!;
         public DbSet<Image> Images { get; set; } = default!;
-        //public DbSet<Customer> Customers { get; set; } = default!;
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -44,15 +43,15 @@ namespace Pazaar.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        //entry.Entity.CreatedBy = userService.Id;
+                        entry.Entity.CreatedBy = userService.UserId;
                         entry.Entity.CreatedOn = dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        //entry.Entity.LastModifiedBy = userService.Id;
+                        entry.Entity.LastModifiedBy = userService.UserId;
                         entry.Entity.ModifiedOn = dateTime.Now;
                         break;
                     case EntityState.Deleted:
-                        //entry.Entity.DeleteBy = userService.Id;
+                        entry.Entity.DeleteBy = userService.UserId;
                         entry.Entity.DeletedOn = dateTime.Now;
                         entry.Entity.IsDeleted = true;
                         break;

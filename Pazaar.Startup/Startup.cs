@@ -26,9 +26,6 @@ namespace Pazaar.Startup
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pazaar.Startup", Version = "v1" });
             });
-
-            //services.AddFluentValidation(fv =>
-            //        fv.RegisterValidatorsFromAssemblyContaining<AdValidator>());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

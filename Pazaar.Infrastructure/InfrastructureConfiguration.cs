@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Pazaar.Application.Interfaces;
 using Pazaar.Infrastructure.Identity;
 using Pazaar.Infrastructure.Persistence;
 using Pazaar.Infrastructure.Services;
+
 
 namespace Pazaar.Infrastructure
 {
@@ -37,16 +39,16 @@ namespace Pazaar.Infrastructure
 
             services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
 
+            services.AddHttpContextAccessor();
+
 
             //services.AddIdentityServer()
             //    .AddApiAuthorization<User, PazaarDbContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
-            //services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentityService, IdentityService>();
 
-            //services.AddAuthentication().AddIdentityServerJwt();
-
-            //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AdValidator>());
+            services.AddAuthentication().AddIdentityServerJwt();
 
             return services;
         }
@@ -65,34 +67,6 @@ namespace Pazaar.Infrastructure
                     options.Password.RequireUppercase = false;
                 })
                 .AddEntityFrameworkStores<PazaarDbContext>();
-
-            //var secret = configuration
-            //    .GetSection(nameof(ApplicationSettings))
-            //    .GetValue<string>(nameof(ApplicationSettings.Secret));
-
-            //var key = Encoding.ASCII.GetBytes(secret);
-
-            //services
-            //    .AddAuthentication(authentication =>
-            //    {
-            //        authentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //        authentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    })
-            //    .AddJwtBearer(bearer =>
-            //    {
-            //        bearer.RequireHttpsMetadata = false;
-            //        bearer.SaveToken = true;
-            //        bearer.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateIssuerSigningKey = true,
-            //            IssuerSigningKey = new SymmetricSecurityKey(key),
-            //            ValidateIssuer = false,
-            //            ValidateAudience = false
-            //        };
-            //    });
-
-            //services.AddTransient<IIdentityService, IdentityService>();
-            //services.AddTransient<IJwtTokenGenerator, JwtTokenGeneratorService>();
 
             return services;
         }

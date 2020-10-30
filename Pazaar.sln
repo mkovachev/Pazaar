@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pazaar.Infrastructure", "Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pazaar.Application", "Pazaar.Application\Pazaar.Application.csproj", "{D84C47FC-7C57-429B-8661-E8A9AF8C375F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pazaar.Web", "Pazaar.Web\Pazaar.Web.csproj", "{42D6CD5E-837F-49C2-902A-B4538A9D86E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pazaar.Web", "Pazaar.Web\Pazaar.Web.csproj", "{42D6CD5E-837F-49C2-902A-B4538A9D86E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
