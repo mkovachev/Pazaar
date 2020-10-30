@@ -16,7 +16,7 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
                 .WithOne()
                 .Metadata
                 .PrincipalToDependent
-                .SetField("Images");
+                .SetField("images");
         }
     }
 }

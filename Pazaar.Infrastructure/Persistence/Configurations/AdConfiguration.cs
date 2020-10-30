@@ -41,7 +41,7 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
                 .WithOne()
                 .Metadata
                 .PrincipalToDependent
-                .SetField("Categories");
+                .SetField("categories");
         }
     }
 }
