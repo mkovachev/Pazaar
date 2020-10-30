@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Pazaar.Application.Common;
+using Pazaar.Application.Features.Customers;
 using System.Threading;
 using System.Threading.Tasks;
-using Pazaar.Application.Features.Customers;
 
 namespace Pazaar.Application.Features.Identity.Commands.Login
 {

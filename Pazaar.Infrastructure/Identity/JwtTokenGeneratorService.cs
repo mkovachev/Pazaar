@@ -1,8 +1,4 @@
-﻿using System;
-using System.Security.Claims;
-using System.Text;
-
-namespace Pazaar.Infrastructure.Identity
+﻿namespace Pazaar.Infrastructure.Identity
 {
     public class JwtTokenGeneratorService //: IJwtTokenGenerator
     {

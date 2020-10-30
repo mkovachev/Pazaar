@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Pazaar.Domain.Models.Ads
 {
     public class CategoryType
     {
-        public Type EntityType => typeof(Category);
+        //public Type EntityType => typeof(Category);
 
-        public IReadOnlyCollection<Category> Categories()
+        public static IReadOnlyCollection<Category> Categories()
             => new HashSet<Category>
             {
                 new Category("Real Estate"),

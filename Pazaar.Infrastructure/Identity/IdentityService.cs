@@ -58,10 +58,10 @@ namespace Pazaar.Infrastructure.Identity
         {
             var user = await this.userManager.FindByIdAsync(changePasswordInput.UserId);
 
-            if (user == null)
-            {
-                return InvalidErrorMessage;
-            }
+            //if (user == null)
+            //{
+            //    return InvalidErrorMessage;
+            //}
 
             var identityResult = await this.userManager.ChangePasswordAsync(
                 user,

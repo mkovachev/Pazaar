@@ -1,25 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Pazaar.Infrastructure.Identity;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Pazaar.Infrastructure.Persistence
+﻿namespace Pazaar.Infrastructure.Persistence
 {
     internal static class PazaarDbContextSeed
     {
-        public static async Task SeedDefaultUser(UserManager<User> userManager)
-        {
-            var defaultUser = new User
-            {
-                UserName = "admin@mail.com",
-                Email = "admin@mail.com"
-            };
+        //public static async Task SeedDefaultUser(UserManager<User> userManager)
+        //{
+        //    var admin = new User
+        //    {
+        //        Email = "admin@mail.com",
+        //        UserName = "admin@mail.com"
+        //    };
 
-            if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
-            {
-                await userManager.CreateAsync(defaultUser, "Admin");
-            }
-        }
+        //    if (userManager.Users.All(u => u.UserName != admin.UserName))
+        //    {
+        //        await userManager.CreateAsync(admin, "admin");
+        //    }
+        //}
 
         // Seed, if necessary
         //public static async Task SeedSampleData(PazaarDbContext context)

@@ -1,6 +1,6 @@
 ﻿namespace Pazaar.Application.Interfaces
 {
-    public interface ICurrentUserService
+    public interface IUserService
     {
         string Id { get; }
     }

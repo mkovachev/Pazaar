@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    internal class PazaarDbContext : IdentityDbContext<User>
+    internal class PazaarDbContext : IdentityDbContext<User>, IPazaarDbContext
     {
-        private readonly ICurrentUserService userService;
+        //private readonly IUserService userService;
         private readonly IDateTime dateTime;
-        public PazaarDbContext(DbContextOptions<PazaarDbContext> options, ICurrentUserService userService,
+        public PazaarDbContext(DbContextOptions<PazaarDbContext> options,
             IDateTime dateTime)
             : base(options)
         {
-            this.userService = userService;
+            //this.userService = userService;
             this.dateTime = dateTime;
         }
 
@@ -28,7 +28,7 @@ namespace Pazaar.Infrastructure.Persistence
         public DbSet<Category> Categories { get; set; } = default!;
         public DbSet<Gallery> Galleries { get; set; } = default!;
         public DbSet<Image> Images { get; set; } = default!;
-        public DbSet<Customer> Customers { get; set; } = default!;
+        //public DbSet<Customer> Customers { get; set; } = default!;
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -45,15 +45,15 @@ namespace Pazaar.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = userService.Id;
+                        //entry.Entity.CreatedBy = userService.Id;
                         entry.Entity.CreatedOn = dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = userService.Id;
+                        //entry.Entity.LastModifiedBy = userService.Id;
                         entry.Entity.ModifiedOn = dateTime.Now;
                         break;
                     case EntityState.Deleted:
-                        entry.Entity.DeleteBy = userService.Id;
+                        //entry.Entity.DeleteBy = userService.Id;
                         entry.Entity.DeletedOn = dateTime.Now;
                         entry.Entity.IsDeleted = true;
                         break;

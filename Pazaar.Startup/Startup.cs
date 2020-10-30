@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Pazaar.Infrastructure;
 
 namespace Pazaar.Startup
 {
@@ -18,8 +19,9 @@ namespace Pazaar.Startup
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+            services.AddInfrastructure(this.Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pazaar.Startup", Version = "v1" });
@@ -38,16 +40,17 @@ namespace Pazaar.Startup
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pazaar.Startup v1"));
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app
+               //.UseValidationExceptionHandler()
+               .UseHttpsRedirection()
+               .UseRouting()
+               .UseCors(options => options
+                   .AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod())
+               .UseAuthentication()
+               .UseAuthorization()
+               .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
