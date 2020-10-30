@@ -6,28 +6,35 @@ namespace Pazaar.Domain.Models.Ads
 {
     public class Gallery : AuditableEntity
     {
-        public int Id { get; }
-        public IList<Image> Images { get; } = new List<Image>().AsReadOnly();
+        private readonly HashSet<Image> images;
+
+        public Gallery()
+        {
+            this.images = new HashSet<Image>();
+        }
+
+        public int Id { get; private set; }
+        public IReadOnlyCollection<Image> Images => this.Images.ToList().AsReadOnly();
 
         public void AddImage(Image image)
         {
             var imageName = image.Name;
 
-            if (this.Images.Any(i => i.Name == imageName))
+            if (this.images.Any(i => i.Name == imageName))
             {
                 return;
             }
 
-            this.Images.Add(image);
+            this.images.Add(image);
         }
 
         public void DeleteImage(Image image)
         {
             var imageName = image.Name;
 
-            if (this.Images.Any(i => i.Name == imageName))
+            if (this.images.Any(i => i.Name == imageName))
             {
-                this.Images.Remove(image);
+                this.images.Remove(image);
             }
         }
     }

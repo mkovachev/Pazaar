@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using MediatR;
+using Pazaar.Application.Common;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Pazaar.Application.Features.Identity.Commands.ChangePassword
 {
@@ -10,14 +13,14 @@ namespace Pazaar.Application.Features.Identity.Commands.ChangePassword
 
         public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommand, Result>
         {
-            private readonly ICurrentUser currentUser;
-            private readonly IIdentity identity;
+            private readonly IUser user;
+            private readonly IIdentityService identity;
 
             public ChangePasswordCommandHandler(
-                ICurrentUser currentUser,
-                IIdentity identity)
+                IUser User,
+                IIdentityService identity)
             {
-                this.currentUser = currentUser;
+                this.User = user;
                 this.identity = identity;
             }
 
@@ -25,7 +28,7 @@ namespace Pazaar.Application.Features.Identity.Commands.ChangePassword
                 ChangePasswordCommand request,
                 CancellationToken cancellationToken)
                 => await this.identity.ChangePassword(new ChangePasswordInputModel(
-                    this.currentUser.UserId,
+                    this.User.UserId,
                     request.CurrentPassword,
                     request.NewPassword));
         }

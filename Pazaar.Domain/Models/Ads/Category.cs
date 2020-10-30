@@ -9,7 +9,7 @@ namespace Pazaar.Domain.Models.Ads
             this.Name = name;
         }
 
-        public int Id { get; }
+        public int Id { get; private set; }
         public string Name { get; }
     }
 }

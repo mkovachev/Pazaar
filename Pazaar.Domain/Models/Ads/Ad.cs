@@ -6,11 +6,13 @@ namespace Pazaar.Domain.Models.Ads
 {
     public class Ad : AuditableEntity, IAggregateRoot
     {
+        private readonly HashSet<Category> categories;
         internal Ad(string title, Gallery gallery, decimal price)
         {
             this.Title = title;
             this.Gallery = gallery;
             this.Price = price;
+            this.categories = new HashSet<Category>();
         }
 
         internal Ad(string title, Gallery gallery, decimal price, string description)
@@ -19,15 +21,16 @@ namespace Pazaar.Domain.Models.Ads
             this.Gallery = gallery;
             this.Price = price;
             this.Description = description;
+            this.categories = new HashSet<Category>();
         }
 
-        public int Id { get; }
+        public int Id { get; private set; }
         public string Title { get; private set; }
-        public Gallery Gallery { get; }
+        public Gallery Gallery { get; private set; }
         public decimal Price { get; private set; }
         public string Description { get; private set; } = default!;
         public bool IsActive { get; private set; } = true;
-        public IList<Category> Categories { get; } = new List<Category>().AsReadOnly();
+        public IReadOnlyCollection<Category> Categories => this.categories.ToList().AsReadOnly();
 
         public Ad UpdateTitle(string title)
         {
@@ -61,21 +64,21 @@ namespace Pazaar.Domain.Models.Ads
         {
             var categoryName = category.Name;
 
-            if (this.Categories.Any(c => c.Name == categoryName))
+            if (this.categories.Any(c => c.Name == categoryName))
             {
                 return;
             }
 
-            this.Categories.Add(category);
+            this.categories.Add(category);
         }
 
         public void DeleteCategory(Category category)
         {
             var categoryName = category.Name;
 
-            if (this.Categories.Any(c => c.Name == categoryName))
+            if (this.categories.Any(c => c.Name == categoryName))
             {
-                this.Categories.Remove(category);
+                this.categories.Remove(category);
             }
         }
     }

@@ -2,6 +2,8 @@
 using Pazaar.Application.Common;
 using Pazaar.Application.Features.Identity;
 using Pazaar.Application.Features.Identity.Commands;
+using Pazaar.Application.Features.Identity.Commands.ChangePassword;
+using Pazaar.Application.Features.Identity.Commands.Login;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,4 +75,5 @@ namespace Pazaar.Infrastructure.Identity
                 : Result.Failure(errors);
         }
     }
+}
 

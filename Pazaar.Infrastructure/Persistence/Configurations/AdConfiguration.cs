@@ -15,11 +15,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
               .HasMaxLength(TitleMaxLength)
               .IsRequired();
 
-            builder
-              .HasOne(ad => ad.Gallery)
-              .WithMany()
-              .HasForeignKey("GalleryId")
-              .OnDelete(DeleteBehavior.Restrict);
 
             builder
              .Property(ad => ad.Price)
@@ -34,6 +29,12 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
 
             builder
              .Property(ad => ad.IsActive);
+
+            builder
+              .HasOne(ad => ad.Gallery)
+              .WithMany()
+              .HasForeignKey("GalleryId")
+              .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasMany(ad => ad.Categories)

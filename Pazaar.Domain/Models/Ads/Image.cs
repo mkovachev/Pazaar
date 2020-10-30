@@ -10,7 +10,7 @@ namespace Pazaar.Domain.Models.Ads
             this.Url = url;
         }
 
-        public int Id { get; }
+        public int Id { get; private set; }
         public string Name { get; }
         public string Url { get; }
     }

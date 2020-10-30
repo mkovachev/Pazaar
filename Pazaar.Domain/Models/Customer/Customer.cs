@@ -7,6 +7,8 @@ namespace Pazaar.Domain.Model.Customer
 {
     public class Customer : AuditableEntity, IAggregateRoot
     {
+        private readonly HashSet<Ad> ads;
+
         internal Customer(string name, string email, string phoneNumber, string city, string profileImage)
         {
             this.Name = name;
@@ -14,6 +16,8 @@ namespace Pazaar.Domain.Model.Customer
             this.PhoneNumber = phoneNumber;
             this.ProfileImage = profileImage;
             this.City = city;
+
+            this.ads = new HashSet<Ad>();
         }
 
         internal Customer(string name, string email)
@@ -21,14 +25,16 @@ namespace Pazaar.Domain.Model.Customer
             this.Name = name;
             this.Email = email;
 
+            this.ads = new HashSet<Ad>();
         }
 
+        public int Id { get; private set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string PhoneNumber { get; private set; } = default!;
         public string City { get; private set; } = default!;
         public string ProfileImage { get; private set; } = default!;
-        public IList<Ad> Ads { get; } = new List<Ad>().AsReadOnly();
+        public IReadOnlyCollection<Ad> Ads => this.ads.ToList().AsReadOnly();
 
         public Customer UpdateName(string name)
         {
@@ -68,21 +74,21 @@ namespace Pazaar.Domain.Model.Customer
         {
             var adTitle = ad.Title;
 
-            if (this.Ads.Any(ad => ad.Title == adTitle))
+            if (this.ads.Any(ad => ad.Title == adTitle))
             {
                 return;
             }
 
-            this.Ads.Add(ad);
+            this.ads.Add(ad);
         }
 
         public void DeleteCategory(Ad ad)
         {
             var adTitle = ad.Title;
 
-            if (this.Ads.Any(ad => ad.Title == adTitle))
+            if (this.ads.Any(ad => ad.Title == adTitle))
             {
-                this.Ads.Remove(ad);
+                this.ads.Remove(ad);
             }
         }
     }
