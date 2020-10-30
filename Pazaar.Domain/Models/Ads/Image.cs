@@ -11,7 +11,7 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         public int Id { get; private set; }
-        public string Name { get; }
-        public string Url { get; }
+        public string Name { get; private set; }
+        public string Url { get; private set; }
     }
 }

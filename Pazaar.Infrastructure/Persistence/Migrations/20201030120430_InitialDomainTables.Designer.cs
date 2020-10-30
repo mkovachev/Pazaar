@@ -10,7 +10,7 @@ using Pazaar.Infrastructure.Persistence;
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(PazaarDbContext))]
-    [Migration("20201030115234_InitialDomainTables")]
+    [Migration("20201030120430_InitialDomainTables")]
     partial class InitialDomainTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
