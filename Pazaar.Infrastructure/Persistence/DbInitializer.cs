@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Pazaar.Infrastructure.Identity;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -9,15 +6,13 @@ namespace Pazaar.Infrastructure.Persistence
 {
     internal class DbInitializer : IDbInitializer
     {
-        private readonly PazaarDbContext context;
-        private readonly UserManager<User> userManager;
+        private readonly PazaarDbContext db;
         //private readonly ILogger logger;
         private readonly ISeedData data;
 
-        public DbInitializer(PazaarDbContext context, UserManager<User> userManager, ISeedData data)
+        public DbInitializer(PazaarDbContext db, ISeedData data)
         {
-            this.context = context;
-            this.userManager = userManager;
+            this.db = db;
             //this.logger = logger;
             this.data = data;
         }
@@ -26,15 +21,15 @@ namespace Pazaar.Infrastructure.Persistence
         {
             try
             {
-                this.context.Database.Migrate();
+                this.db.Database.Migrate();
 
-                if (context.Database.IsSqlServer())
+                if (db.Database.IsSqlServer())
                 {
-                    context.Database.Migrate();
+                    db.Database.Migrate();
                 }
 
-                await this.data.SeedDefaultUser(userManager);
-                await this.data.SeedSampleData(context);
+                await this.data.SeedDefaultUser();
+                await this.data.SeedSampleData();
             }
             catch (Exception ex)
             {

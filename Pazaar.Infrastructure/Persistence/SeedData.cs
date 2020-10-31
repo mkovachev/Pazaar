@@ -10,40 +10,46 @@ namespace Pazaar.Infrastructure.Persistence
     {
         private readonly IInitialCategories categories;
         private readonly IInitialAds ads;
+        private readonly PazaarDbContext db;
+        private readonly UserManager<User> userManager;
 
-        public SeedData(IInitialCategories categories, IInitialAds ads)
+        public SeedData(IInitialCategories categories, IInitialAds ads, PazaarDbContext db, UserManager<User> userManager)
         {
             this.categories = categories;
             this.ads = ads;
+            this.db = db;
+            this.userManager = userManager;
         }
 
-        public async Task SeedDefaultUser(UserManager<User> userManager)
+        public async Task SeedDefaultUser()
         {
             var admin = new User("admin@mail.com");
 
-            if (userManager.Users.All(u => u.UserName != admin.Email))
+            if (this.userManager.Users.All(u => u.UserName != admin.Email))
             {
-                await userManager.CreateAsync(admin, "admin1234");
+                await this.userManager.CreateAsync(admin, "admin1234");
             }
+
+            await this.db.SaveChangesAsync();
         }
 
-        public async Task SeedSampleData(PazaarDbContext context)
+        public async Task SeedSampleData()
         {
             var initialCategories = this.categories.GetInitialCategories();
 
-            if (!context.Categories.Any())
+            if (!this.db.Categories.Any())
             {
-                await context.Categories.AddRangeAsync(initialCategories);
+                await this.db.Categories.AddRangeAsync(initialCategories);
             }
 
             var initialAds = this.ads.GetInitialAds();
 
-            if (!context.Ads.Any())
+            if (!this.db.Ads.Any())
             {
-                await context.Ads.AddRangeAsync(initialAds);
+                await this.db.Ads.AddRangeAsync(initialAds);
             }
 
-            await context.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
         }
     }
 }
