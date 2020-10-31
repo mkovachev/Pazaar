@@ -1,6 +1,10 @@
-﻿namespace Pazaar.Domain.Factories
+﻿using Pazaar.Domain.Common;
+
+namespace Pazaar.Domain.Factories
 {
-    public interface IFactory
+    public interface IFactory<out TEntity>
+        where TEntity : IAggregateRoot
     {
+        TEntity Build();
     }
 }
