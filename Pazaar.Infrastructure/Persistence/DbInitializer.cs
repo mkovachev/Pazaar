@@ -12,12 +12,14 @@ namespace Pazaar.Infrastructure.Persistence
         private readonly PazaarDbContext context;
         private readonly UserManager<User> userManager;
         private readonly ILogger logger;
+        private readonly PazaarDbContextSeed data;
 
-        public DbInitializer(PazaarDbContext context, UserManager<User> userManager, ILogger logger)
+        public DbInitializer(PazaarDbContext context, UserManager<User> userManager, ILogger logger, PazaarDbContextSeed data)
         {
             this.context = context;
             this.userManager = userManager;
             this.logger = logger;
+            this.data = data;
         }
 
         public async Task Initialize()
@@ -31,8 +33,8 @@ namespace Pazaar.Infrastructure.Persistence
                     context.Database.Migrate();
                 }
 
-                await PazaarDbContextSeed.SeedDefaultUser(userManager);
-                await PazaarDbContextSeed.SeedSampleData(context);
+                await this.data.SeedDefaultUser(userManager);
+                await this.data.SeedSampleData(context);
             }
             catch (Exception ex)
             {
