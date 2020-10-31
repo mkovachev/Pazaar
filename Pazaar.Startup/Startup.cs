@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Pazaar.Application;
 using Pazaar.Domain;
 using Pazaar.Infrastructure;
+using Pazaar.Infrastructure.Persistence;
 using Pazaar.Web;
 
 namespace Pazaar.Startup
@@ -27,6 +29,10 @@ namespace Pazaar.Startup
                 .AddApplication(this.Configuration)
                 .AddInfrastructure(this.Configuration)
                 .AddWebComponents();
+
+            services.AddHttpContextAccessor();
+
+            services.AddHealthChecks();
 
             services.AddSwaggerGen(c =>
             {
@@ -53,7 +59,12 @@ namespace Pazaar.Startup
                    .AllowAnyMethod())
                .UseAuthentication()
                .UseAuthorization()
-               .UseEndpoints(endpoints => endpoints.MapControllers());
+               .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                    endpoints.MapHealthChecks("/health")
+                             .RequireAuthorization();
+                });
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Pazaar.Infrastructure
             IConfiguration configuration)
             => services
                 .AddDatabase(configuration)
-                .AddIdentity(configuration);
+                .AddIdentity();
 
         private static IServiceCollection AddDatabase(
             this IServiceCollection services,
@@ -35,22 +35,26 @@ namespace Pazaar.Infrastructure
             {
                 services.AddDbContext<PazaarDbContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection"), sqlServer => sqlServer.MigrationsAssembly(typeof(PazaarDbContext)
-                                 .Assembly.FullName)));
+                                 .Assembly.FullName)))
+                    .AddTransient<IDbInitializer, DbInitializer>();
             }
 
-            services.AddHttpContextAccessor();
+            services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
+
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<PazaarDbContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentity, IdentityService>();
 
-            services.AddAuthentication().AddIdentityServerJwt();
+            services.AddAuthentication()
+                    .AddIdentityServerJwt();
 
             return services;
         }
 
         private static IServiceCollection AddIdentity(
-           this IServiceCollection services,
-           IConfiguration configuration)
+           this IServiceCollection services)
         {
             services
                 .AddIdentity<User, IdentityRole>(options =>

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    internal class PazaarDbContext : IdentityDbContext<User>, IPazaarDbContext
+    public class PazaarDbContext : IdentityDbContext<User>, IPazaarDbContext
     {
         private readonly ICurrentUserId userService;
         private readonly IDateTime dateTime;
