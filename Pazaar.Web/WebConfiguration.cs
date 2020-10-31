@@ -10,7 +10,7 @@ namespace Pazaar.Web
         public static IServiceCollection AddWeb(this IServiceCollection services)
         {
             services
-                .AddScoped<ICurrentUserId, CurrentUserService>()
+                .AddSingleton<ICurrentUserId, CurrentUserService>()
                 .AddHttpContextAccessor()
                 .AddControllers()
                 .AddNewtonsoftJson();
