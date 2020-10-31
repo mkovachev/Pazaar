@@ -30,6 +30,8 @@ namespace Pazaar.Infrastructure.Persistence
 
                 await this.data.SeedDefaultUser();
                 await this.data.SeedSampleData();
+
+                await this.db.SaveChangesAsync();
             }
             catch (Exception ex)
             {

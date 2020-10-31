@@ -32,30 +32,44 @@ namespace Pazaar.Infrastructure.Identity
                 ? Result.Success
                 : Result.Failure(errors);
         }
-        public async Task<Result> Login(UserInputModel userInput)
+        //public async Task<Result> Login(UserInputModel userInput)
+        //{
+        //    var user = await this.userManager.FindByEmailAsync(userInput.Email);
+
+        //    if (user == null)
+        //    {
+        //        return InvalidErrorMessage;
+        //    }
+
+        //    var passwordValid = await this.userManager.CheckPasswordAsync(user, userInput.Password);
+
+        //    if (!passwordValid)
+        //    {
+        //        return InvalidErrorMessage;
+        //    }
+
+        //    return await this.userManager.AddLoginAsync(user, userInput);
+        //}
+
+        public async Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput)
         {
-            var user = await this.userManager.FindByEmailAsync(userInput.Email);
+            var user = await this.userManager.FindByIdAsync(changePasswordInput.UserId);
+
             if (user == null)
             {
                 return InvalidErrorMessage;
             }
 
-            var passwordValid = await this.userManager.CheckPasswordAsync(user, userInput.Password);
-            if (!passwordValid)
-            {
-                return InvalidErrorMessage;
-            }
+            var identityResult = await this.userManager.ChangePasswordAsync(
+                user,
+                changePasswordInput.CurrentPassword,
+                changePasswordInput.NewPassword);
 
-            return null;
+            var errors = identityResult.Errors.Select(e => e.Description);
 
-            //var token = this.jwtTokenGenerator.GenerateToken(user);
-
-            // return new LoginSuccessModel(user.Id, token);
-        }
-
-        public Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput)
-        {
-            throw new System.NotImplementedException();
+            return identityResult.Succeeded
+                ? Result.Success
+                : Result.Failure(errors);
         }
 
         public async Task<Result> DeleteUserAsync(string userId)
@@ -64,7 +78,7 @@ namespace Pazaar.Infrastructure.Identity
 
             if (user != null)
             {
-                await userManager.DeleteAsync(user);
+                await this.userManager.DeleteAsync(user);
             }
 
             return Result.Success;

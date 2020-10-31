@@ -9,7 +9,7 @@ namespace Pazaar.Application.Identity
     {
         Task<Result> Register(UserInputModel userInput);
 
-        Task<Result> Login(UserInputModel userInput);
+        //Task<Result> Login(UserInputModel userInput);
 
         Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput);
 

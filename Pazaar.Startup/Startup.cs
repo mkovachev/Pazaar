@@ -26,11 +26,7 @@ namespace Pazaar.Startup
                 .AddDomain()
                 .AddApplication(this.Configuration)
                 .AddInfrastructure(this.Configuration)
-                .AddWebComponents();
-
-            services.AddHttpContextAccessor();
-
-            services.AddHealthChecks();
+                .AddWeb();
 
             services.AddSwaggerGen(c =>
             {
@@ -52,9 +48,9 @@ namespace Pazaar.Startup
                .UseHttpsRedirection()
                .UseRouting()
                .UseCors(options => options
-                   .AllowAnyOrigin()
-                   .AllowAnyHeader()
-                   .AllowAnyMethod())
+                                    .AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod())
                .UseAuthentication()
                .UseAuthorization()
                .UseEndpoints(endpoints =>

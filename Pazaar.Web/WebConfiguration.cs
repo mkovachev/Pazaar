@@ -7,12 +7,16 @@ namespace Pazaar.Web
 {
     public static class WebConfiguration
     {
-        public static IServiceCollection AddWebComponents(this IServiceCollection services)
+        public static IServiceCollection AddWeb(this IServiceCollection services)
         {
             services
                 .AddScoped<ICurrentUserId, CurrentUserService>()
+                .AddHttpContextAccessor()
                 .AddControllers()
                 .AddNewtonsoftJson();
+
+            services.AddHealthChecks();
+
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
