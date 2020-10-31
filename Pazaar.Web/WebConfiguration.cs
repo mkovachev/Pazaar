@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Pazaar.Application.Interfaces;
+using Pazaar.Web.Services;
 
 namespace Pazaar.Web
 {
@@ -8,7 +10,7 @@ namespace Pazaar.Web
         public static IServiceCollection AddWebComponents(this IServiceCollection services)
         {
             services
-                //.AddScoped<ICurrentUserService, CurrentUserService>()
+                .AddScoped<ICurrentUserId, CurrentUserService>()
                 .AddControllers()
                 .AddNewtonsoftJson();
 

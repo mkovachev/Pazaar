@@ -36,16 +36,18 @@ namespace Pazaar.Infrastructure
                 services.AddDbContext<PazaarDbContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection"), sqlServer => sqlServer.MigrationsAssembly(typeof(PazaarDbContext)
                                  .Assembly.FullName)))
-                    .AddTransient<IDbInitializer, DbInitializer>();
+                    .AddTransient<IDbInitializer, DbInitializer>()
+                    .AddTransient<ISeedData, SeedData>();
             }
 
-            services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
+            //services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
 
-            services.AddDefaultIdentity<User>()
-                .AddEntityFrameworkStores<PazaarDbContext>();
+            //services.AddDefaultIdentity<User>()
+            //    .AddEntityFrameworkStores<PazaarDbContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentity, IdentityService>();
+            services.AddLogging();
 
             services.AddAuthentication()
                     .AddIdentityServerJwt();

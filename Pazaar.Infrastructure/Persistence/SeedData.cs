@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
-    public class PazaarDbContextSeed
+    public class SeedData : ISeedData
     {
         private readonly IInitialCategories categories;
         private readonly IInitialAds ads;
 
-        public PazaarDbContextSeed(IInitialCategories categories, IInitialAds ads)
+        public SeedData(IInitialCategories categories, IInitialAds ads)
         {
             this.categories = categories;
             this.ads = ads;

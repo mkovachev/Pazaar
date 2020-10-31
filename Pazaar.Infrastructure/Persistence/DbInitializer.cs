@@ -11,14 +11,14 @@ namespace Pazaar.Infrastructure.Persistence
     {
         private readonly PazaarDbContext context;
         private readonly UserManager<User> userManager;
-        private readonly ILogger logger;
-        private readonly PazaarDbContextSeed data;
+        //private readonly ILogger logger;
+        private readonly ISeedData data;
 
-        public DbInitializer(PazaarDbContext context, UserManager<User> userManager, ILogger logger, PazaarDbContextSeed data)
+        public DbInitializer(PazaarDbContext context, UserManager<User> userManager, ISeedData data)
         {
             this.context = context;
             this.userManager = userManager;
-            this.logger = logger;
+            //this.logger = logger;
             this.data = data;
         }
 
@@ -38,7 +38,7 @@ namespace Pazaar.Infrastructure.Persistence
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+                //this.logger.LogError(ex, "An error occurred while migrating or seeding the database.");
 
                 throw;
             }
