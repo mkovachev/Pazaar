@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Identity\IJwtTokenGenerator.cs" />
-    <Compile Remove="Identity\JwtTokenGeneratorService.cs" />
-    <Compile Remove="Persistence\Configurations\UserConfiguration.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectCapability Include="DynamicFileNesting" />
   </ItemGroup>
 

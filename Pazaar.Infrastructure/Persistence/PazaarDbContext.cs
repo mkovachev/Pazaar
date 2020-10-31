@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Common;
+using Pazaar.Domain.Model.Customer;
 using Pazaar.Domain.Models.Ads;
 using Pazaar.Infrastructure.Identity;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace Pazaar.Infrastructure.Persistence
         public DbSet<Category> Categories { get; set; } = default!;
         public DbSet<Gallery> Galleries { get; set; } = default!;
         public DbSet<Image> Images { get; set; } = default!;
+        public DbSet<Customer> Customers { get; set; } = default!;
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
