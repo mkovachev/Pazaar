@@ -4,9 +4,9 @@ namespace Pazaar.Infrastructure.Identity
 {
     public class User : IdentityUser//, IUser
     {
-        //internal User(string email)
-        //    : base(email)
-        //    => this.Email = email;
+        internal User(string email)
+            : base(email)
+            => this.Email = email;
 
         //public Customer? Customer { get; private set; }
 

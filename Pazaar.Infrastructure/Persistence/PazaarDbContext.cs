@@ -13,10 +13,10 @@ namespace Pazaar.Infrastructure.Persistence
 {
     internal class PazaarDbContext : IdentityDbContext<User>, IPazaarDbContext
     {
-        private readonly ICurrentUserService userService;
+        private readonly ICurrentUserId userService;
         private readonly IDateTime dateTime;
         public PazaarDbContext(DbContextOptions<PazaarDbContext> options,
-            IDateTime dateTime, ICurrentUserService userService)
+            IDateTime dateTime, ICurrentUserId userService)
             : base(options)
         {
             this.dateTime = dateTime;

@@ -24,5 +24,10 @@
     <ProjectReference Include="..\Pazaar.Domain\Pazaar.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Identity\Commands\Login\" />
+    <Folder Include="Features\Identity\Commands\Register\" />
+  </ItemGroup>
+
 
 </Project>

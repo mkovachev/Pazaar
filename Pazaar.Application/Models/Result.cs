@@ -25,5 +25,13 @@ namespace Pazaar.Application.Models
 
         public static Result Failure(IEnumerable<string> errors)
             => new Result(false, errors.ToList());
+
+        // convert to string
+        public static implicit operator Result(string error)
+            => Failure(new List<string> { error });
+
+        // convert to List<sting>
+        public static implicit operator Result(List<string> errors)
+            => Failure(errors.ToList());
     }
 }

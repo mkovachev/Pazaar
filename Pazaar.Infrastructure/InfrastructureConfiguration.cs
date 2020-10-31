@@ -40,7 +40,7 @@ namespace Pazaar.Infrastructure
             services.AddHttpContextAccessor();
 
             services.AddTransient<IDateTime, DateTimeService>();
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentity, IdentityService>();
 
             services.AddAuthentication().AddIdentityServerJwt();
 

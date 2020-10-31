@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Pazaar.Application.Interfaces;
-using Pazaar.Web.Services;
 
 namespace Pazaar.Web
 {

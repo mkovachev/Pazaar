@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace Pazaar.Web.Services
 {
-    public class CurrentUserService : ICurrentUserService
+    public class CurrentUserService : ICurrentUserId
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
