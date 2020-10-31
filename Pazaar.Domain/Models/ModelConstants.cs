@@ -13,6 +13,9 @@
 
             public const int CityMinLength = 3;
             public const int CityMaxLength = 30;
+
+            public const int ProfileImageUrlMinLength = 4;
+            public const int ProfileImageUrlMaxLength = 2048;
         }
 
         public class Ad
