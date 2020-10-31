@@ -58,7 +58,8 @@ namespace Pazaar.Startup
                     endpoints.MapControllers();
                     endpoints.MapHealthChecks("/health")
                              .RequireAuthorization();
-                });
+                })
+               .Initialize();
         }
     }
 }
