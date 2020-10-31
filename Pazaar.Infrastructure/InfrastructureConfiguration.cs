@@ -40,11 +40,6 @@ namespace Pazaar.Infrastructure
                     .AddTransient<ISeedData, SeedData>();
             }
 
-            //services.AddScoped<IPazaarDbContext>(provider => provider.GetService<PazaarDbContext>());
-
-            //services.AddDefaultIdentity<User>()
-            //    .AddEntityFrameworkStores<PazaarDbContext>();
-
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentity, IdentityService>();
             services.AddLogging();
