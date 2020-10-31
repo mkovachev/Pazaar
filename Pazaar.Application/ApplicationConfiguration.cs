@@ -1,7 +1,7 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pazaar.Domain.Validations;
+using System.Reflection;
 
 namespace Pazaar.Application
 {
@@ -10,8 +10,7 @@ namespace Pazaar.Application
         public static IServiceCollection AddApplication(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddMvcCore()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AdValidator>());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }

@@ -1,9 +1,9 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Pazaar.Domain.Common;
 using Pazaar.Domain.Factories;
 using Pazaar.Domain.Models.Ads;
-using Pazaar.Domain.Validations;
+using System.Reflection;
 
 namespace Pazaar.Domain
 {
@@ -11,17 +11,15 @@ namespace Pazaar.Domain
     {
         public static IServiceCollection AddDomain(this IServiceCollection services)
         {
-            services
-                .Scan(scan => scan
+            services.Scan(scan => scan
                     .FromCallingAssembly()
                     .AddClasses(classes => classes
                         .AssignableTo(typeof(IFactory)))
                     .AsMatchingInterface()
                     .WithTransientLifetime())
                 .AddTransient<IInitialAds, AdData>()
-                .AddTransient<IInitialCategories, CategoryData>();
-
-            services.AddMvcCore().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AdValidator>());
+                .AddTransient<IInitialCategories, CategoryData>()
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }
