@@ -19,6 +19,7 @@ namespace Pazaar.Infrastructure
             IConfiguration configuration)
             => services
                 .AddDatabase(configuration)
+                .AddRepositories()
                 .AddIdentity();
 
         private static IServiceCollection AddDatabase(
@@ -49,6 +50,15 @@ namespace Pazaar.Infrastructure
 
             return services;
         }
+
+        internal static IServiceCollection AddRepositories(this IServiceCollection services)
+           => services
+               .Scan(scan => scan
+                   .FromCallingAssembly()
+                   .AddClasses(classes => classes
+                       .AssignableTo(typeof(IRepository<>)))
+                   .AsMatchingInterface()
+                   .WithTransientLifetime());
 
         private static IServiceCollection AddIdentity(
            this IServiceCollection services)
