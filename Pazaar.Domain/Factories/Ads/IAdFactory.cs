@@ -13,8 +13,6 @@ namespace Pazaar.Domain.Factories.Ads
 
         IAdFactory WithDescription(string description);
 
-        IAdFactory WithIsActive(bool isActive);
-
         IAdFactory WithCategories(IReadOnlyCollection<Category> categories);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Pazaar.Application.Common;
 using Pazaar.Application.Features.Identity.Commands;
 using Pazaar.Application.Features.Identity.Commands.ChangePassword;
 using Pazaar.Application.Identity;
-using Pazaar.Application.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,24 +32,27 @@ namespace Pazaar.Infrastructure.Identity
                 ? Result.Success
                 : Result.Failure(errors);
         }
-        //public async Task<Result> Login(UserInputModel userInput)
-        //{
-        //    var user = await this.userManager.FindByEmailAsync(userInput.Email);
 
-        //    if (user == null)
-        //    {
-        //        return InvalidErrorMessage;
-        //    }
+        public async Task<Result> Login(UserInputModel userInput)
+        {
+            var user = await this.userManager.FindByEmailAsync(userInput.Email);
 
-        //    var passwordValid = await this.userManager.CheckPasswordAsync(user, userInput.Password);
+            if (user == null)
+            {
+                return InvalidErrorMessage;
+            }
 
-        //    if (!passwordValid)
-        //    {
-        //        return InvalidErrorMessage;
-        //    }
+            var passwordValid = await this.userManager.CheckPasswordAsync(user, userInput.Password);
 
-        //    return await this.userManager.AddLoginAsync(user, userInput);
-        //}
+            if (!passwordValid)
+            {
+                return InvalidErrorMessage;
+            }
+
+            var token = this.jwtTokenGenerator.GenerateToken(user);
+
+            return new LoginSuccessModel(token);
+        }
 
         public async Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput)
         {

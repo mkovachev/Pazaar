@@ -7,10 +7,10 @@ namespace Pazaar.Domain.Factories.Customers
     internal class CustomerFactory : ICustomerFactory
     {
         private string name = default!;
-        private string phoneNumber = default!;
-        private string city = default!;
-        private string profileImage = default!;
         private string email = default!;
+        private string city = default!;
+        private string phoneNumber = default!;
+        private string profileImage = default!;
         private IReadOnlyCollection<Ad> ads = new List<Ad>().AsReadOnly();
 
         public Customer Build() => new Customer(this.name, this.email);

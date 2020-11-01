@@ -7,7 +7,7 @@ namespace Pazaar.Domain.Models.Ads
     public class Ad : AuditableEntity, IAggregateRoot
     {
         private readonly HashSet<Category> categories;
-        internal Ad(string title, Gallery gallery, decimal price, string description, bool isActive = true)
+        internal Ad(string title, Gallery gallery, decimal price, string description)
         {
             this.Title = title;
             this.Gallery = gallery;
@@ -17,7 +17,7 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         // for EF core only
-        private Ad(string title, decimal price, string description, bool isActive = true)
+        private Ad(string title, decimal price, string description)
         {
             this.Title = title;
             this.Price = price;

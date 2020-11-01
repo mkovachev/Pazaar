@@ -1,6 +1,5 @@
 ﻿using Pazaar.Application.Features.Identity.Commands;
 using Pazaar.Application.Features.Identity.Commands.ChangePassword;
-using Pazaar.Application.Models;
 using System.Threading.Tasks;
 
 namespace Pazaar.Application.Identity
@@ -9,7 +8,7 @@ namespace Pazaar.Application.Identity
     {
         Task<Result> Register(UserInputModel userInput);
 
-        //Task<Result> Login(UserInputModel userInput);
+        Task<Result> Login(UserInputModel userInput);
 
         Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput);
 

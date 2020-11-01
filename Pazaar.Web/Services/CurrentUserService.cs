@@ -1,24 +1,24 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Pazaar.Application.Interfaces;
-using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace Pazaar.Web.Services
 {
-    public class CurrentUserService : ICurrentUserId
+    public class CurrentUserService : ICurrentUser
     {
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        private readonly IHttpContextAccessor accessor;
+        public CurrentUserService(IHttpContextAccessor accessor)
         {
-            var user = httpContextAccessor.HttpContext?.User;
-
-            if (user == null)
-            {
-                throw new InvalidOperationException("This request does not have an authenticated user.");
-            }
-
-            this.UserId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            this.accessor = accessor;
         }
 
-        public string UserId { get; }
+        public string UserId => this.accessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        public string Name => this.accessor.HttpContext.User.Identity.Name;
+
+        public bool IsAuthenticated() => this.accessor.HttpContext.User.Identity.IsAuthenticated;
+
+        public IEnumerable<Claim> GetClaimsIdentity() => this.accessor.HttpContext.User.Claims;
     }
 }

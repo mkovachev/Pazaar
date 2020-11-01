@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Pazaar.Domain.Common;
+using Pazaar.Domain.Factories;
 using Pazaar.Domain.Models.Ads;
 using System.Reflection;
 
@@ -13,7 +14,7 @@ namespace Pazaar.Domain
             services.Scan(scan => scan
                     .FromCallingAssembly()
                     .AddClasses(classes => classes
-                        .AssignableTo(typeof(IFactory)))
+                        .AssignableTo(typeof(IFactory<>)))
                     .AsMatchingInterface()
                     .WithTransientLifetime())
                 .AddTransient<IInitialAds, AdData>()

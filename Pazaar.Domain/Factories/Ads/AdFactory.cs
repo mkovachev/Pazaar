@@ -8,7 +8,6 @@ namespace Pazaar.Domain.Factories.Ads
         private string title = default!;
         private decimal price = default!;
         private string description = default!;
-        private bool isActive = true!;
         private Gallery gallery = default!;
 
         private IReadOnlyCollection<Category> categories = new List<Category>().AsReadOnly();
@@ -30,12 +29,6 @@ namespace Pazaar.Domain.Factories.Ads
         public IAdFactory WithGallery(Gallery gallery)
         {
             this.gallery = gallery;
-            return this;
-        }
-
-        public IAdFactory WithIsActive(bool isActive)
-        {
-            this.isActive = isActive;
             return this;
         }
 
