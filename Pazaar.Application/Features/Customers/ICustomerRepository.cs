@@ -8,6 +8,8 @@ namespace Pazaar.Application.Features.Customers
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
+        Task<Customer> Find(string userId, CancellationToken cancellationToken = default);
+
         Task<CustomerDetailsOutputModel> GetDetails(int id, CancellationToken cancellationToken = default);
 
         Task<bool> HasAd(int id, int adId, CancellationToken cancellationToken = default);

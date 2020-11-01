@@ -26,7 +26,7 @@ namespace Pazaar.Application.Features.Ads.Commands.Create
 
             public async Task<Result> Handle(CreateAdCommand request, CancellationToken cancellationToken)
             {
-                var customer = await this.customerRepository.FindByUser(
+                var customer = await this.customerRepository.Find(
                     this.currentUser.UserId,
                     cancellationToken);
 

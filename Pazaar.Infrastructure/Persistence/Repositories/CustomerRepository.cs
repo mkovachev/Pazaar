@@ -22,6 +22,14 @@ namespace Pazaar.Infrastructure.Persistence.Repositories
             this.db = db;
         }
 
+        public async Task<Customer> Find(string userId, CancellationToken cancellationToken = default)
+        {
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+
+            return await this.db.Customers.FirstOrDefaultAsync(c => c.Id == user.Customer.Id, cancellationToken);
+
+        }
+
         public async Task<CustomerDetailsOutputModel> GetDetails(int id, CancellationToken cancellationToken = default)
              => await this.db.Customers
                             .Where(c => c.Id == id)
