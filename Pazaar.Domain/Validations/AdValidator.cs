@@ -7,7 +7,7 @@ namespace Pazaar.Domain.Validations
     using static ModelConstants.Ad;
     public abstract class AdValidator : AbstractValidator<Ad>
     {
-        public void ValidateTitle()
+        protected void ValidateTitle()
         {
             RuleFor(ad => ad.Title)
                 .NotEmpty().WithMessage("Please add a title")
@@ -15,7 +15,7 @@ namespace Pazaar.Domain.Validations
                 .WithMessage($"Title must be between {TitleMinLength} and {TitleMaxLength} characters");
         }
 
-        public void ValidatePrice()
+        protected void ValidatePrice()
             => RuleFor(ad => ad.Price)
                 .NotEmpty().WithMessage("Please add a price")
                 .ScalePrecision(2, 2)
@@ -23,7 +23,7 @@ namespace Pazaar.Domain.Validations
                 .InclusiveBetween(MinPrice, MaxPrice)
                 .WithMessage($"Price must be between {MinPrice} and {MaxPrice}");
 
-        public void ValidateDescription()
+        protected void ValidateDescription()
         {
             RuleFor(ad => ad.Description)
                 .Length(DescriptionMinLength, DescriptionMaxLength)

@@ -7,7 +7,7 @@ namespace Pazaar.Domain.Validations
     using static ModelConstants.Customer;
     public abstract class CustomerValidator : AbstractValidator<Customer>
     {
-        public void ValidateName()
+        protected void ValidateName()
         {
             RuleFor(u => u.Name)
                 .NotEmpty().WithMessage("Please add your name")
