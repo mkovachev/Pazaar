@@ -49,9 +49,9 @@ namespace Pazaar.Infrastructure.Identity
                 return InvalidErrorMessage;
             }
 
-            var token = this.jwtTokenGenerator.GenerateToken(user);
+            //var token = this.jwtTokenGenerator.GenerateToken(user);
 
-            return new LoginSuccessModel(token);
+            return Result.Success; //new LoginSuccessModel(token);
         }
 
         public async Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput)

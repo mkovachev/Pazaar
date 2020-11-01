@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Ads\Commands\Delete\" />
+    <Folder Include="Features\Ads\Commands\ChangeAvailability\" />
+    <Folder Include="Features\Ads\Queries\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

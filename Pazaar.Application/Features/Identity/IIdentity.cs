@@ -1,4 +1,5 @@
-﻿using Pazaar.Application.Features.Identity.Commands;
+﻿using Pazaar.Application.Common;
+using Pazaar.Application.Features.Identity.Commands;
 using Pazaar.Application.Features.Identity.Commands.ChangePassword;
 using System.Threading.Tasks;
 

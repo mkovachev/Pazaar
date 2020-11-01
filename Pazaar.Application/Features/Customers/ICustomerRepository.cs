@@ -15,7 +15,5 @@ namespace Pazaar.Application.Features.Customers
         Task<bool> HasAd(int customerId, int adId, CancellationToken cancellationToken = default);
 
         Task<CustomerDetailsOutputModel> GetDetails(int id, CancellationToken cancellationToken = default);
-
-        Task<CustomerOutputModel> GetDetailsByCarId(int carAdId, CancellationToken cancellationToken = default);
     }
 }
