@@ -4,7 +4,7 @@ using Pazaar.Infrastructure.Persistence;
 
 namespace Pazaar.Startup
 {
-    public static class ApplicationInitialization
+    public static class Initializator
     {
         public static IApplicationBuilder Initialize(this IApplicationBuilder app)
         {

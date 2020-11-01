@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Application.Features.Identity.Commands.Login
 {
-    public class LoginUserCommand : UserInputModel, IRequest<Result<LoginOutputModel>>
+    public class LoginUserCommand : UserInputModel, IRequest<Result>
     {
         public string Token { get; } = default!;
 
-        public class LoginCommandHandler : IRequestHandler<LoginUserCommand, Result<LoginOutputModel>>
+        public class LoginCommandHandler : IRequestHandler<LoginUserCommand, Result>
         {
             private readonly IIdentity identity;
 
@@ -18,18 +18,13 @@ namespace Pazaar.Application.Features.Identity.Commands.Login
             {
                 this.identity = identity;
             }
-            public async Task<Result<LoginOutputModel>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+            public async Task<Result> Handle(LoginUserCommand request, CancellationToken cancellationToken)
             {
                 var result = await this.identity.Login(request);
 
-                if (!result.Succeeded)
-                {
-                    return result.Errors;
-                }
-
-                var user = result.Data;
-
-                return user.Token;
+                return result.Succeeded
+                            ? Result.Success
+                            : Result.Failure(result.Errors);
             }
         }
     }

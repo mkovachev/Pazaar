@@ -51,7 +51,7 @@ namespace Pazaar.Infrastructure.Identity
 
             //var token = this.jwtTokenGenerator.GenerateToken(user);
 
-            return Result.Success; //new LoginSuccessModel(token);
+            return Result.Success; // Todo new LoginSuccessModel(token);
         }
 
         public async Task<Result> ChangePassword(ChangePasswordInputModel changePasswordInput)
@@ -84,8 +84,7 @@ namespace Pazaar.Infrastructure.Identity
                 await this.userManager.DeleteAsync(user);
             }
 
-            return Result.Success;
+            return Result.Success; // Todo
         }
-
     }
 }

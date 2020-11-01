@@ -8,6 +8,9 @@ namespace Pazaar.Web
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase
     {
+        public const string PathSeparator = "/";
+        public const string Id = "{id}";
+
         private IMediator? mediator;
 
         protected IMediator Mediator

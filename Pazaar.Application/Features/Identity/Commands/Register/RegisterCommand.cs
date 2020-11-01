@@ -30,11 +30,11 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
         }
         public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var result = await this.identity.Register(request);
+            Result<IUser> result = (Result<IUser>)await this.identity.Register(request);
 
             if (!result.Succeeded)
             {
-                return result;
+                return result.Errors;
             }
 
             var user = result.Data;

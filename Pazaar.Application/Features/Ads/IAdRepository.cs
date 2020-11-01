@@ -1,4 +1,5 @@
-﻿using Pazaar.Application.Interfaces;
+﻿using Pazaar.Application.Features.Ads.Queries;
+using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,13 +11,9 @@ namespace Pazaar.Application.Features.Ads
     {
         Task<Ad> Find(int id, CancellationToken cancellationToken = default);
 
-        Task GetDetails(int id, CancellationToken cancellationToken = default);
+        Task<AdDetailsOutputModel> GetDetails(int id, CancellationToken cancellationToken = default);
 
-        Task<Gallery> GetGallery(
-            string gallery,
-            CancellationToken cancellationToken = default);
-
-        Task<IEnumerable<Category>> GetAdCategories(CancellationToken cancellationToken = default);
+        Task<IEnumerable<Category>> GetCategories(int id, CancellationToken cancellationToken = default);
 
         Task<bool> Delete(int id, CancellationToken cancellationToken = default);
 
