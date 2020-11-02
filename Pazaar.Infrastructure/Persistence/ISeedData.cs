@@ -3,6 +3,7 @@
     public interface ISeedData
     {
         void SeedDefaultUser();
-        void SeedSampleData();
+        void SeedInitialAds();
+        void SeedInitialCategories();
     }
 }

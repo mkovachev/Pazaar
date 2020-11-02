@@ -16,7 +16,7 @@ namespace Pazaar.Domain.Models.Ads
         }
 
         // for EF core only
-        private Ad(string title, Gallery gallery, decimal price, string description)
+        private Ad(string title, decimal price, string description, Gallery gallery)
         {
             this.Title = title;
             this.Price = price;

@@ -24,7 +24,8 @@ namespace Pazaar.Infrastructure.Persistence
                 this.db.Database.Migrate();
 
                 this.data.SeedDefaultUser();
-                this.data.SeedSampleData();
+                this.data.SeedInitialAds();
+                this.data.SeedInitialCategories();
             }
 
             catch (Exception ex)

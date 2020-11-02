@@ -32,7 +32,21 @@ namespace Pazaar.Infrastructure.Persistence
             this.db.SaveChanges();
         }
 
-        public void SeedSampleData()
+        public void SeedInitialAds()
+        {
+            var initialAds = this.ads.GetInitialAds();
+
+            if (!this.db.Ads.Any())
+            {
+                foreach (var entity in initialAds)
+                {
+                    this.db.Add(entity);
+                }
+            }
+
+            this.db.SaveChanges();
+        }
+        public void SeedInitialCategories()
         {
             var initialCategories = this.categories.GetInitialCategories();
 
@@ -43,24 +57,8 @@ namespace Pazaar.Infrastructure.Persistence
                     this.db.Add(entity);
                 }
 
-                //this.db.Categories.AddRange(initialCategories);
-
                 this.db.SaveChanges();
             }
-
-            var initialAds = this.ads.GetInitialAds();
-
-            if (!this.db.Ads.Any())
-            {
-                foreach (var entity in initialAds)
-                {
-                    this.db.Add(entity);
-                }
-
-                //this.db.Ads.AddRange(initialAds);
-            }
-
-            this.db.SaveChanges();
         }
     }
 }
