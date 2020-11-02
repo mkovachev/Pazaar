@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-
-namespace Pazaar.Infrastructure.Persistence
+﻿namespace Pazaar.Infrastructure.Persistence
 {
     public interface ISeedData
     {
-        Task SeedDefaultUser();
-        Task SeedSampleData();
+        void SeedDefaultUser();
+        void SeedSampleData();
     }
 }

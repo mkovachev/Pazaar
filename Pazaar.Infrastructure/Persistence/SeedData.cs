@@ -2,7 +2,6 @@
 using Pazaar.Domain.Common;
 using Pazaar.Infrastructure.Identity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pazaar.Infrastructure.Persistence
 {
@@ -21,35 +20,47 @@ namespace Pazaar.Infrastructure.Persistence
             this.userManager = userManager;
         }
 
-        public async Task SeedDefaultUser()
+        public void SeedDefaultUser()
         {
             var admin = new User("admin@mail.com");
 
             if (this.userManager.Users.All(u => u.UserName != admin.Email))
             {
-                await this.userManager.CreateAsync(admin, "admin1234");
+                this.userManager.CreateAsync(admin, "admin1234");
             }
 
-            await this.db.SaveChangesAsync();
+            this.db.SaveChanges();
         }
 
-        public async Task SeedSampleData()
+        public void SeedSampleData()
         {
             var initialCategories = this.categories.GetInitialCategories();
 
             if (!this.db.Categories.Any())
             {
-                await this.db.Categories.AddRangeAsync(initialCategories);
+                foreach (var entity in initialCategories)
+                {
+                    this.db.Add(entity);
+                }
+
+                //this.db.Categories.AddRange(initialCategories);
+
+                this.db.SaveChanges();
             }
 
             var initialAds = this.ads.GetInitialAds();
 
             if (!this.db.Ads.Any())
             {
-                await this.db.Ads.AddRangeAsync(initialAds);
+                foreach (var entity in initialAds)
+                {
+                    this.db.Add(entity);
+                }
+
+                //this.db.Ads.AddRange(initialAds);
             }
 
-            await this.db.SaveChangesAsync();
+            this.db.SaveChanges();
         }
     }
 }

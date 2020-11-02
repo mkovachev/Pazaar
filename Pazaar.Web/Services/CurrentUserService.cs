@@ -13,12 +13,12 @@ namespace Pazaar.Web.Services
             this.accessor = accessor;
         }
 
-        public string UserId => this.accessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        public string UserId => this.accessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        public string Name => this.accessor.HttpContext.User.Identity.Name;
+        public string Name => this.accessor.HttpContext?.User.Identity.Name;
 
         public bool IsAuthenticated() => this.accessor.HttpContext.User.Identity.IsAuthenticated;
 
-        public IEnumerable<Claim> GetClaimsIdentity() => this.accessor.HttpContext.User.Claims;
+        public IEnumerable<Claim> GetClaimsIdentity() => this.accessor.HttpContext?.User.Claims;
     }
 }
