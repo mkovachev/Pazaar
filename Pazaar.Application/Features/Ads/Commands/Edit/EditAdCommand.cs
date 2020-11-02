@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Application.Features.Ads.Commands.Edit
 {
-    public class EditAdCommand : AddCommand<EditAdCommand>, IRequest<Result>
+    public class EditAdCommand : AdCommand<EditAdCommand>, IRequest<Result>
     {
         public class EditAdCommandHandler : IRequestHandler<EditAdCommand, Result>
         {
@@ -17,13 +17,13 @@ namespace Pazaar.Application.Features.Ads.Commands.Edit
             }
             public async Task<Result> Handle(EditAdCommand request, CancellationToken cancellationToken)
             {
-                var ad = await this.adRepository.Find(request.Id, cancellationToken);
+                var ad = await adRepository.Find(request.Id, cancellationToken);
 
                 ad.UpdateTitle(request.Title)
                   .UpdatePrice(request.Price)
                   .UpdateDescription(request.Description);
 
-                await this.adRepository.Save(ad, cancellationToken);
+                await adRepository.Save(ad, cancellationToken);
 
                 return Result.Success;
             }

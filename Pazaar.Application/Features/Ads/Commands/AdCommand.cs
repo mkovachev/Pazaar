@@ -2,7 +2,7 @@
 
 namespace Pazaar.Application.Features
 {
-    public abstract class AddCommand<TCommand> : EntityCommand<int>
+    public abstract class AdCommand<TCommand> : EntityCommand<int>
     {
         public string Title { get; private set; } = default!;
         public Gallery Gallery { get; private set; } = default!;

@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using Pazaar.Domain.Models;
-using Pazaar.Domain.Models.Ads;
 
-namespace Pazaar.Domain.Validations
+namespace Pazaar.Application.Features
 {
     using static ModelConstants.Ad;
-    public abstract class AdValidator : AbstractValidator<Ad>
+    public class AdCommandValidator<TCommand> : AbstractValidator<AdCommand<TCommand>>
+        where TCommand : EntityCommand<int>
     {
         protected void ValidateTitle()
         {
@@ -16,12 +16,14 @@ namespace Pazaar.Domain.Validations
         }
 
         protected void ValidatePrice()
-            => RuleFor(ad => ad.Price)
-                .NotEmpty().WithMessage("Please add a price")
-                .ScalePrecision(2, 2)
-                .WithMessage("Price must have exact 2-digits after the decimal point")
-                .InclusiveBetween(MinPrice, MaxPrice)
-                .WithMessage($"Price must be between {MinPrice} and {MaxPrice}");
+        {
+            RuleFor(ad => ad.Price)
+                           .NotEmpty().WithMessage("Please add a price")
+                           .ScalePrecision(2, 2)
+                           .WithMessage("Price must have exact 2-digits after the decimal point")
+                           .InclusiveBetween(MinPrice, MaxPrice)
+                           .WithMessage($"Price must be between {MinPrice} and {MaxPrice}");
+        }
 
         protected void ValidateDescription()
         {
