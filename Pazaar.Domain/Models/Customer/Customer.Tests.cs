@@ -13,7 +13,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitEmptyName_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("", "john@mail.com");
+            Action act = () => new Customer("", "john@mail.com", "+1234567", "Sofia", "image");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Please add your name");
@@ -23,7 +23,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidNameLength_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("x", "john@mail.com");
+            Action act = () => new Customer("x", "john@mail.com", "+1234567", "Sofia", "image");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -34,7 +34,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidEmail_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("John", "invalid mail");
+            Action act = () => new Customer("invalid mail");
 
             // Assert
             act.Should().Throw<ArgumentException>();
@@ -55,7 +55,7 @@ namespace Pazaar.Domain.Models.Users
         public void CreateUserWitInvalidCity_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("John", "john@mail.com", "+3591234567", "xxx", "image");
+            Action act = () => new Customer("John", "john@mail.com", "+1234567", "xxx", "image");
 
             // Assert
             act.Should().Throw<ArgumentException>()

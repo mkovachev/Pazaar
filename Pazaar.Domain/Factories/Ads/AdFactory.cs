@@ -12,7 +12,7 @@ namespace Pazaar.Domain.Factories.Ads
 
         private IReadOnlyCollection<Category> categories = new List<Category>().AsReadOnly();
 
-        public Ad Build() => new Ad(this.title, this.gallery, this.price, this.description);
+        public Ad Build() => new Ad(this.title, this.price, this.description);
 
         public IAdFactory WithCategories(IReadOnlyCollection<Category> categories)
         {

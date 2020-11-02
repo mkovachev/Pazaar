@@ -158,19 +158,16 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeleteBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DeletedOn")
@@ -184,7 +181,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedOn")
@@ -196,12 +192,10 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("ProfileImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 
@@ -218,7 +212,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -228,7 +221,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DeleteBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DeletedOn")
@@ -239,7 +231,7 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int>("GalleryId")
+                    b.Property<int?>("GalleryId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -249,7 +241,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedOn")
@@ -284,14 +275,12 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeleteBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DeletedOn")
@@ -301,7 +290,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedOn")
@@ -327,14 +315,12 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeleteBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DeletedOn")
@@ -344,7 +330,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedOn")
@@ -363,14 +348,12 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeleteBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DeletedOn")
@@ -383,7 +366,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedOn")
@@ -538,8 +520,7 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     b.HasOne("Pazaar.Domain.Models.Ads.Gallery", "Gallery")
                         .WithMany()
                         .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Pazaar.Domain.Models.Ads.Category", b =>

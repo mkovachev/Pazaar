@@ -12,7 +12,7 @@ namespace Pazaar.Web.Features
     {
         [HttpPost]
         [Route(nameof(Register))]
-        public async Task<ActionResult<Result>> Register(CreateUserCommand command)
+        public async Task<ActionResult<Result>> Register(RegisterCommand command)
       => await Mediator.Send(command);
 
         [HttpPost]

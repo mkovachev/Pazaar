@@ -25,11 +25,6 @@ namespace Pazaar.Infrastructure.Persistence
             {
                 this.db.Database.Migrate();
 
-                if (db.Database.IsSqlServer())
-                {
-                    db.Database.Migrate();
-                }
-
                 await this.data.SeedDefaultUser();
                 await this.data.SeedSampleData();
 
@@ -37,7 +32,7 @@ namespace Pazaar.Infrastructure.Persistence
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+                this.logger.LogError(ex.Message);
 
                 throw;
             }

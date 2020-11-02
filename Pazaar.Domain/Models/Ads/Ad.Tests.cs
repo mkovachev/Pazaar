@@ -12,7 +12,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWitEmptyTitle_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("", new Gallery(), 1000.00M, "some valid description");
+            Action act = () => new Ad("", 1000.00M, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Please add a title");
@@ -22,7 +22,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidTitleLength_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Invalid", new Gallery(), 1000.00M, "some valid description");
+            Action act = () => new Ad("Invalid", 1000.00M, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>()
@@ -33,7 +33,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidPriceFormat_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Selling my Audi", new Gallery(), 1, "some valid description");
+            Action act = () => new Ad("Selling my Audi", 1, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>().WithMessage("Price must have exact 2-digits after the decimal point");
@@ -43,7 +43,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateCategoryWithInvalidPrice_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Selling my Audi", new Gallery(), -100, "some valid description");
+            Action act = () => new Ad("Selling my Audi", -100, "some valid description");
 
             // Assert
             act.Should().Throw<ArgumentException>()

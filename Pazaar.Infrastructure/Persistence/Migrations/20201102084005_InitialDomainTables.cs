@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
@@ -31,14 +31,14 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    DeleteBy = table.Column<string>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: false),
-                    City = table.Column<string>(maxLength: 30, nullable: false),
-                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: false)
+                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: true),
+                    City = table.Column<string>(maxLength: 30, nullable: true),
+                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,9 +55,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    DeleteBy = table.Column<string>(nullable: false)
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -127,11 +127,11 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    DeleteBy = table.Column<string>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true),
                     Title = table.Column<string>(maxLength: 70, nullable: false),
-                    GalleryId = table.Column<int>(nullable: false),
+                    GalleryId = table.Column<int>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", maxLength: 500000000, nullable: false),
                     Description = table.Column<string>(maxLength: 200, nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
@@ -164,9 +164,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    DeleteBy = table.Column<string>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     Url = table.Column<string>(maxLength: 2048, nullable: false),
                     GalleryId = table.Column<int>(nullable: true)
@@ -277,9 +277,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    DeleteBy = table.Column<string>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     AdId = table.Column<int>(nullable: true)
                 },

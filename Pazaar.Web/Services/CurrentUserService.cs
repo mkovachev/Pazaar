@@ -13,7 +13,7 @@ namespace Pazaar.Web.Services
             this.accessor = accessor;
         }
 
-        public string UserId => this.accessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+        public string UserId => this.accessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public string Name => this.accessor.HttpContext.User.Identity.Name;
 

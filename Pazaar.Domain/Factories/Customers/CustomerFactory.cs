@@ -13,7 +13,7 @@ namespace Pazaar.Domain.Factories.Customers
         private string profileImage = default!;
         private IReadOnlyCollection<Ad> ads = new List<Ad>().AsReadOnly();
 
-        public Customer Build() => new Customer(this.name, this.email);
+        public Customer Build() => new Customer(this.email);
 
         public Customer Build(string name, string email, string city, string phoneNumber, string profileImage, IReadOnlyCollection<Ad> ads)
             => this

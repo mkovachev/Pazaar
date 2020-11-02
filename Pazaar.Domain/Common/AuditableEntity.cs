@@ -12,8 +12,8 @@ namespace Pazaar.Domain.Common
 
         public bool IsDeleted { get; set; }
 
-        public string LastModifiedBy { get; set; } = default!;
-        public string CreatedBy { get; set; } = default!;
-        public string DeleteBy { get; set; } = default!;
+        public string? LastModifiedBy { get; set; } = default!;
+        public string? CreatedBy { get; set; } = default!;
+        public string? DeleteBy { get; set; } = default!;
     }
 }

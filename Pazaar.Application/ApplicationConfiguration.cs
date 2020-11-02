@@ -9,8 +9,7 @@ namespace Pazaar.Application
 {
     public static class ApplicationConfiguration
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services
                 .AddAutoMapper(Assembly.GetExecutingAssembly())

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Pazaar.Application.Common;
+using Pazaar.Application.Features.Identity;
 using Pazaar.Application.Features.Identity.Commands;
 using Pazaar.Application.Features.Identity.Commands.ChangePassword;
 using Pazaar.Application.Identity;
@@ -20,7 +21,7 @@ namespace Pazaar.Infrastructure.Identity
             this.userManager = userManager;
         }
 
-        public async Task<Result> Register(UserInputModel userInput)
+        public async Task<Result<IUser>> Register(UserInputModel userInput)
         {
             var user = new User(userInput.Email);
 
@@ -29,8 +30,8 @@ namespace Pazaar.Infrastructure.Identity
             var errors = identityResult.Errors.Select(e => e.Description);
 
             return identityResult.Succeeded
-                ? Result.Success
-                : Result.Failure(errors);
+                ? Result<IUser>.SuccessWith(user)
+                : Result<IUser>.Failure(errors);
         }
 
         public async Task<Result> Login(UserInputModel userInput)

@@ -24,7 +24,7 @@ namespace Pazaar.Startup
         {
             services
                 .AddDomain()
-                .AddApplication(this.Configuration)
+                .AddApplication()
                 .AddInfrastructure(this.Configuration)
                 .AddWeb();
 

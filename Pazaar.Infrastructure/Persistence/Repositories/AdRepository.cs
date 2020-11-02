@@ -47,7 +47,7 @@ namespace Pazaar.Infrastructure.Persistence.Repositories
 
         public async Task<bool> Delete(int id, CancellationToken cancellationToken = default)
         {
-            var ad = await db.Ads.FindAsync(id, cancellationToken);
+            var ad = await this.db.Ads.FindAsync(id, cancellationToken);
 
             if (ad == null)
             {

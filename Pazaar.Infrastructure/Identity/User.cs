@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Pazaar.Application.Features.Identity;
 using Pazaar.Domain.Exceptions;
 using Pazaar.Domain.Model.Customer;
 
 namespace Pazaar.Infrastructure.Identity
 {
-    public class User : IdentityUser
+    public class User : IdentityUser, IUser
     {
         internal User(string email)
             : base(email)
