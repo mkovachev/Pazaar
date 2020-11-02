@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pazaar.Application.Features.Ads.Commands.Create
 {
-    public class CreateAdCommand : AddCommand<CreateAdCommand>, IRequest<Result>
+    public class CreateAdCommand : AdCommand<CreateAdCommand>, IRequest<Result>
     {
         public class CreateAdCommandHander : IRequestHandler<CreateAdCommand, Result>
         {

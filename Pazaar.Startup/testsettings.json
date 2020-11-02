@@ -1,0 +1,11 @@
+﻿{
+  "General": {
+    "WebAssemblyName": "Pazaar.Startup"
+  },
+  "ApplicationSettings": {
+    "Secret": "Fake Secret"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Fake Connection String"
+  }
+}
