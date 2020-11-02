@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using Pazaar.Application.Features;
+using Pazaar.Application.Features.Ads.Commands;
 using Pazaar.Domain.Models;
 
-namespace Pazaar.Application.Features
+namespace Pazaar.Application.Ads.Features
 {
     using static ModelConstants.Ad;
     public class AdCommandValidator<TCommand> : AbstractValidator<AdCommand<TCommand>>

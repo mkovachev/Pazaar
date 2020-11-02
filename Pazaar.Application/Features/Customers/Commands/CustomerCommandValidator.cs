@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Pazaar.Domain.Model.Customer;
 using Pazaar.Domain.Models;
 
-namespace Pazaar.Domain.Validations
+namespace Pazaar.Application.Features.Customers.Commands
 {
     using static ModelConstants.Customer;
-    public abstract class CustomerValidator : AbstractValidator<Customer>
+    public class CustomerCommandValidator<TCommand> : AbstractValidator<CustomerCommand<TCommand>>
+        where TCommand : EntityCommand<int>
     {
         protected void ValidateName()
         {

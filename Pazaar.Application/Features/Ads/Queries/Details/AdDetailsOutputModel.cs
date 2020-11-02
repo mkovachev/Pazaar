@@ -1,7 +1,7 @@
 ﻿using Pazaar.Application.Mapping;
 using Pazaar.Domain.Models.Ads;
 
-namespace Pazaar.Application.Features.Ads.Queries
+namespace Pazaar.Application.Features.Ads.Queries.Details
 {
     public class AdDetailsOutputModel : IMapFrom<Ad>
     {

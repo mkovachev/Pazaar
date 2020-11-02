@@ -1,6 +1,6 @@
 ﻿using Pazaar.Domain.Models.Ads;
 
-namespace Pazaar.Application.Features
+namespace Pazaar.Application.Features.Ads.Commands
 {
     public abstract class AdCommand<TCommand> : EntityCommand<int>
     {
