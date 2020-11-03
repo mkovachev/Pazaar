@@ -33,7 +33,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateAdWithInvalidTitleMaxLength_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 1000.00M, "some valid description");
+            Action act = () => new Ad("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 1000.00M, "some valid description");
 
             // Assert
             act.Should().Throw<InvalidAdException>();
@@ -43,7 +43,7 @@ namespace Pazaar.Domain.Models.Ads
         public void CreateAdWithInvalidPriceFormat_Should_ThrowException()
         {
             // Act
-            Action act = () => new Ad("Selling my Audi", 1, "some valid description");
+            Action act = () => new Ad("Selling my Audi", int.MinValue, "some valid description");
 
             // Assert
             act.Should().Throw<InvalidAdException>();

@@ -14,6 +14,8 @@ namespace Pazaar.Domain.Model.Customer
 
         internal Customer(string name)
         {
+            ValidateName(name);
+
             this.Name = name;
             this.PhoneNumber = default!;
             this.ProfileImage = default!;

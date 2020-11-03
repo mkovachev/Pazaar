@@ -79,6 +79,7 @@ namespace Pazaar.Domain.Models.Ads
 
         public Ad UpdateDescription(string description)
         {
+            ValidateDescription(description);
             this.Description = description;
 
             return this;
@@ -86,6 +87,7 @@ namespace Pazaar.Domain.Models.Ads
 
         public Ad UpdatePrice(decimal price)
         {
+            ValidatePrice(price);
             this.Price = price;
 
             return this;
@@ -98,6 +100,8 @@ namespace Pazaar.Domain.Models.Ads
             return this;
         }
 
+
+        // Validations
         private void ValidateTitle(string title)
         {
             Guard.ForStringLength<InvalidAdException>(title, TitleMinLength, TitleMaxLength);

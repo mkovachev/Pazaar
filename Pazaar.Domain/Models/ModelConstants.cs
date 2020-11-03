@@ -21,7 +21,7 @@
         public class Ad
         {
             public const int TitleMinLength = 10;
-            public const int TitleMaxLength = 70;
+            public const int TitleMaxLength = 50;
 
             public const decimal MinPrice = 0.1M;
             public const decimal MaxPrice = 500000000.0M;
