@@ -6,7 +6,8 @@ using Pazaar.Domain.Models;
 namespace Pazaar.Infrastructure.Persistence.Configurations
 {
     using static ModelConstants.Customer;
-    class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+
+    internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {

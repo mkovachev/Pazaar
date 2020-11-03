@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Pazaar.Application.Ads.Features;
 
 namespace Pazaar.Application.Features.Ads.Commands.Delete
 {
