@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Pazaar.Application.Features.Customers;
-using Pazaar.Application.Features.Customers.Queries;
+using Pazaar.Application.Features.Customers.Queries.Details;
 using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Model.Customer;
 using System.Linq;
