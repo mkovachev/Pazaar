@@ -10,7 +10,7 @@ using Pazaar.Infrastructure.Persistence;
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(PazaarDbContext))]
-    [Migration("20201103154947_InitialDomainTables")]
+    [Migration("20201103165722_InitialDomainTables")]
     partial class InitialDomainTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,7 +160,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
@@ -191,12 +190,10 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("ProfileImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 

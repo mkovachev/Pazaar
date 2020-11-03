@@ -4,5 +4,6 @@ namespace Pazaar.Domain.Factories.Customers
 {
     public interface ICustomerFactory : IFactory<Customer>
     {
+        ICustomerFactory WithName(string name);
     }
 }

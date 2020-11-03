@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
@@ -35,9 +35,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     CreatedBy = table.Column<string>(nullable: true),
                     DeleteBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
-                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: false),
-                    City = table.Column<string>(maxLength: 30, nullable: false),
-                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: false)
+                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: true),
+                    City = table.Column<string>(maxLength: 30, nullable: true),
+                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: true)
                 },
                 constraints: table =>
                 {

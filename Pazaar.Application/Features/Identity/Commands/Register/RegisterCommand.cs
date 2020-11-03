@@ -10,7 +10,6 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
 {
     public class RegisterCommand : UserInputModel, IRequest<Result>
     {
-        public string Name { get; set; } = default!;
     }
 
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result>
@@ -30,7 +29,7 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
         }
         public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            Result<IUser> result = await this.identity.Register(request);
+            var result = await this.identity.Register(request);
 
             if (!result.Succeeded)
             {
@@ -39,7 +38,7 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
 
             var user = result.Data;
 
-            var customer = this.customerFactory.Build();
+            var customer = this.customerFactory.WithName(request.Email).Build();
 
             user.BecomeCustomer(customer);
 

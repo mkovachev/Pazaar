@@ -12,9 +12,9 @@ namespace Pazaar.Domain.Model.Customer
     {
         private readonly HashSet<Ad> ads;
 
-        internal Customer()
+        internal Customer(string name)
         {
-            this.Name = default!;
+            this.Name = name;
             this.PhoneNumber = default!;
             this.ProfileImage = default!;
             this.City = default!;
@@ -22,10 +22,10 @@ namespace Pazaar.Domain.Model.Customer
         }
 
         public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public string City { get; private set; }
-        public string ProfileImage { get; private set; }
+        public string? Name { get; private set; }
+        public string? PhoneNumber { get; private set; }
+        public string? City { get; private set; }
+        public string? ProfileImage { get; private set; }
         public IReadOnlyCollection<Ad> Ads => this.ads.ToList().AsReadOnly();
 
         public void AddAd(Ad ad)
