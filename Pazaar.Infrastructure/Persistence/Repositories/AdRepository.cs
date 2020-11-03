@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Pazaar.Application.Features.Ads;
+using Pazaar.Application.Features.Ads.Queries.Details;
 using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Models.Ads;
 using System.Collections.Generic;

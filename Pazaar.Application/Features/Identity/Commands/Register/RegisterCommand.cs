@@ -13,13 +13,13 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
         public string Name { get; set; } = default!;
     }
 
-    public class CreateUserCommandHandler : IRequestHandler<RegisterCommand, Result>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result>
     {
         private readonly IIdentity identity;
         private readonly ICustomerFactory customerFactory;
         private readonly ICustomerRepository customerRepository;
 
-        public CreateUserCommandHandler(
+        public RegisterCommandHandler(
             IIdentity identity,
             ICustomerFactory customerFactory,
             ICustomerRepository customerRepository)
@@ -30,7 +30,7 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
         }
         public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var result = await this.identity.Register(request);
+            Result<IUser> result = await this.identity.Register(request);
 
             if (!result.Succeeded)
             {
@@ -40,8 +40,9 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
             var user = result.Data;
 
             var customer = this.customerFactory
-                            .WithEmail(request.Email)
-                            .Build();
+                                        .WithName(request.Name)
+                                        .WithEmail(request.Email)
+                                        .Build();
 
             user.BecomeCustomer(customer);
 

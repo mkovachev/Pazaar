@@ -1,9 +1,7 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Pazaar.Domain.Common;
 using Pazaar.Domain.Factories;
 using Pazaar.Domain.Models.Ads;
-using System.Reflection;
 
 namespace Pazaar.Domain
 {
@@ -18,8 +16,7 @@ namespace Pazaar.Domain
                     .AsMatchingInterface()
                     .WithTransientLifetime())
                 .AddTransient<IInitialAds, AdData>()
-                .AddTransient<IInitialCategories, CategoryData>()
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                .AddTransient<IInitialCategories, CategoryData>();
 
             return services;
         }
