@@ -30,7 +30,7 @@ namespace Pazaar.Infrastructure.Identity
             var errors = identityResult.Errors.Select(e => e.Description);
 
             return identityResult.Succeeded
-                ? Result<IUser>.SuccessWith((IUser)user)
+                ? Result<IUser>.SuccessWith(user)
                 : Result<IUser>.Failure(errors);
         }
 

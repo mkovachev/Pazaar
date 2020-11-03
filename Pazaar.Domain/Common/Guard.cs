@@ -26,12 +26,12 @@ namespace Pazaar.Domain.Common
             }
         }
 
-        public static void AgainstOutOfRange<TException>(int number, int min, int max, string name = "Value")
+        public static void AgainstOutOfRange<TException>(int number, int min, int max)
             where TException : BaseDomainException, new()
         {
             if (min > number || number > max)
             {
-                ThrowException<TException>($"{name} must be between {min} and {max}.");
+                ThrowException<TException>($"{number} must be between {min} and {max}.");
             }
         }
 

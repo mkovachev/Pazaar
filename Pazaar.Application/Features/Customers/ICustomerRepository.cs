@@ -1,5 +1,4 @@
-﻿using Pazaar.Application.Features.Customers.Queries;
-using Pazaar.Application.Features.Customers.Queries.Details;
+﻿using Pazaar.Application.Features.Customers.Queries.Details;
 using Pazaar.Application.Interfaces;
 using Pazaar.Domain.Model.Customer;
 using System.Threading;

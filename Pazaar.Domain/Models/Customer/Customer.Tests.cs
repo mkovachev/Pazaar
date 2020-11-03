@@ -1,65 +1,42 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
+using Pazaar.Domain.Exceptions;
 using Pazaar.Domain.Model.Customer;
 using System;
 using Xunit;
 
-namespace Pazaar.Domain.Models.Users
+namespace Pazaar.Domain.Models.Customers
 {
-    using static ModelConstants.Customer;
     public class CustomerTests
     {
         [Fact]
         public void CreateUserWitEmptyName_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("", "john@mail.com", "+1234567", "Sofia", "image");
+            Action act = () => new Customer("");
 
             // Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Please add your name");
+            act.Should().Throw<InvalidCustomerException>();
         }
 
         [Fact]
-        public void CreateUserWitInvalidNameLength_Should_Throw_ArgumentException()
+        public void CreateUserWitInvalidMinNameLength_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("x", "john@mail.com", "+1234567", "Sofia", "image");
+            Action act = () => new Customer("x");
 
             // Assert
-            act.Should().Throw<ArgumentException>()
-                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
+            act.Should().Throw<InvalidCustomerException>();
         }
 
         [Fact]
-        public void CreateUserWitInvalidEmail_Should_Throw_ArgumentException()
+        public void CreateUserWitInvalidMaxNameLength_Should_Throw_ArgumentException()
         {
             // Act
-            Action act = () => new Customer("invalid mail");
+            Action act = () => new Customer("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
             // Assert
-            act.Should().Throw<ArgumentException>();
-        }
-
-        [Fact]
-        public void CreateUserWitInvalidPhoneNumber_Should_Throw_ArgumentException()
-        {
-            // Act
-            Action act = () => new Customer("John", "john@mail.com", "invalid phone", "Sofia", "image");
-
-            // Assert
-            act.Should().Throw<ArgumentException>()
-                .WithMessage("Phone number must start with '+' sign, followed by digits only.");
-        }
-
-        [Fact]
-        public void CreateUserWitInvalidCity_Should_Throw_ArgumentException()
-        {
-            // Act
-            Action act = () => new Customer("John", "john@mail.com", "+1234567", "xxx", "image");
-
-            // Assert
-            act.Should().Throw<ArgumentException>()
-                .WithMessage($"City must be between {CityMinLength} and {CityMaxLength} characters");
+            act.Should().Throw<InvalidCustomerException>();
         }
 
         [Fact]
@@ -73,19 +50,6 @@ namespace Pazaar.Domain.Models.Users
 
             // Assert
             user.Name.Should().Be("Joe");
-        }
-
-        [Fact]
-        public void UpdateEmail_Should_UpdateEmail()
-        {
-            // Arrange
-            var user = A.Dummy<Customer>();
-
-            // Act
-            user.UpdateEmail("test@test.com");
-
-            // Assert
-            user.Email.Should().Be("test@test.com");
         }
 
         [Fact]
@@ -108,10 +72,23 @@ namespace Pazaar.Domain.Models.Users
             var user = A.Dummy<Customer>();
 
             // Act
-            user.UpdateCity("Burgas");
+            user.UpdateCity("New City");
 
             // Assert
-            user.City.Should().Be("Burgas");
+            user.City.Should().Be("New City");
+        }
+
+        [Fact]
+        public void UpdateProfileImageWithInvalidImage_Should_UpdateProfileImage()
+        {
+            // Arrange
+            var user = A.Dummy<Customer>();
+
+            // Act
+            Action act = () => user.UpdateProfileImage("invalid Image url");
+
+            // Assert
+            act.Should().Throw<InvalidCustomerException>();
         }
 
         [Fact]
@@ -121,10 +98,10 @@ namespace Pazaar.Domain.Models.Users
             var user = A.Dummy<Customer>();
 
             // Act
-            user.UpdateProfileImage("testImage");
+            user.UpdateProfileImage("data:image/jpeg;base64,/someimage");
 
             // Assert
-            user.ProfileImage.Should().Be("testImage");
+            user.ProfileImage.Should().Be("data:image/jpeg;base64,/someimage");
         }
     }
 }
