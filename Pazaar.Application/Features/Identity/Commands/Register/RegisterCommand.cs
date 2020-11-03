@@ -10,41 +10,40 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
 {
     public class RegisterCommand : UserInputModel, IRequest<Result>
     {
-    }
-
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result>
-    {
-        private readonly IIdentity identity;
-        private readonly ICustomerFactory customerFactory;
-        private readonly ICustomerRepository customerRepository;
-
-        public RegisterCommandHandler(
-            IIdentity identity,
-            ICustomerFactory customerFactory,
-            ICustomerRepository customerRepository)
+        public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result>
         {
-            this.identity = identity;
-            this.customerFactory = customerFactory;
-            this.customerRepository = customerRepository;
-        }
-        public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
-        {
-            var result = await this.identity.Register(request);
+            private readonly IIdentity identity;
+            private readonly ICustomerFactory customerFactory;
+            private readonly ICustomerRepository customerRepository;
 
-            if (!result.Succeeded)
+            public RegisterCommandHandler(
+                IIdentity identity,
+                ICustomerFactory customerFactory,
+                ICustomerRepository customerRepository)
             {
-                return result.Errors;
+                this.identity = identity;
+                this.customerFactory = customerFactory;
+                this.customerRepository = customerRepository;
             }
+            public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
+            {
+                var result = await this.identity.Register(request);
 
-            var user = result.Data;
+                if (!result.Succeeded)
+                {
+                    return result.Errors;
+                }
 
-            var customer = this.customerFactory.WithName(request.Email).Build();
+                var user = result.Data;
 
-            user.BecomeCustomer(customer);
+                var customer = this.customerFactory.WithName(request.Email).Build();
 
-            await this.customerRepository.Save(customer, cancellationToken);
+                user.BecomeCustomer(customer);
 
-            return result;
+                await this.customerRepository.Save(customer, cancellationToken);
+
+                return result;
+            }
         }
     }
 }
