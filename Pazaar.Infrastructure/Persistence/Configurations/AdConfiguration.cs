@@ -31,10 +31,11 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
              .Property(ad => ad.IsActive);
 
             builder
-              .HasOne(ad => ad.Gallery)
-              .WithMany()
-              .HasForeignKey("GalleryId")
-              .OnDelete(DeleteBehavior.Restrict);
+                .HasMany(ad => ad.Images)
+                .WithOne()
+                .Metadata
+                .PrincipalToDependent
+                .SetField("images");
 
             builder
                 .HasMany(ad => ad.Categories)

@@ -6,60 +6,18 @@ namespace Pazaar.Domain.Factories.Customers
 {
     internal class CustomerFactory : ICustomerFactory
     {
-        private string name = default!;
-        private string email = default!;
-        private string city = default!;
-        private string phoneNumber = default!;
-        private string profileImage = default!;
-        private IReadOnlyCollection<Ad> ads = new List<Ad>().AsReadOnly();
+        private readonly string name = default!;
 
-        public Customer Build() => new Customer(this.email);
+        private readonly List<Ad> ads;
 
-        public Customer Build(string name, string email, string city, string phoneNumber, string profileImage, IReadOnlyCollection<Ad> ads)
-            => this
-                  .WithName(name)
-                  .WithEmail(email)
-                  .WithCity(city)
-                  .WithPhoneNumber(phoneNumber)
-                  .WithProfileImage(profileImage)
-                  .WithAds(ads)
-                  .Build();
-
-
-        public ICustomerFactory WithName(string name)
+        public CustomerFactory()
         {
-            this.name = name;
-            return this;
-        }
-        public ICustomerFactory WithEmail(string email)
-        {
-            this.email = email;
-            return this;
+            this.ads = new List<Ad>();
         }
 
-        public ICustomerFactory WithCity(string city)
-        {
-            this.city = city;
-            return this;
-        }
+        public Customer Build() => new Customer(name);
 
+        public IReadOnlyCollection<Ad> Ads => this.ads.AsReadOnly();
 
-        public ICustomerFactory WithPhoneNumber(string phoneNumber)
-        {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        public ICustomerFactory WithProfileImage(string profileImage)
-        {
-            this.profileImage = profileImage;
-            return this;
-        }
-
-        public ICustomerFactory WithAds(IReadOnlyCollection<Ad> ads)
-        {
-            this.ads = ads;
-            return this;
-        }
     }
 }

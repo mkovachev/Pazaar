@@ -11,11 +11,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Image> builder)
         {
             builder
-              .Property(i => i.Name)
-              .IsRequired()
-              .HasMaxLength(NameMaxLength);
-
-            builder
               .Property(i => i.Url)
               .IsRequired()
               .HasMaxLength(ImageUrlMaxLength);

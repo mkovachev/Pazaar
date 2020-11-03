@@ -9,7 +9,6 @@ namespace Pazaar.Application.Interfaces
     {
         public DbSet<Ad> Ads { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Gallery> Galleries { get; set; }
         public DbSet<Image> Images { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

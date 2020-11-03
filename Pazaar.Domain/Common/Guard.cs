@@ -26,7 +26,7 @@ namespace Pazaar.Domain.Common
             }
         }
 
-        public static void AgainstOutOfRange<TException>(int number, int min, int max)
+        public static void AgainstIntOutOfRange<TException>(int number, int min, int max)
             where TException : BaseDomainException, new()
         {
             if (min > number || number > max)
@@ -35,7 +35,7 @@ namespace Pazaar.Domain.Common
             }
         }
 
-        public static void AgainstOutOfRange<TException>(decimal number, decimal min, decimal max)
+        public static void AgainstDecimalOutOfRange<TException>(decimal number, decimal min, decimal max)
             where TException : BaseDomainException, new()
         {
             if (min > number || number > max)
@@ -53,7 +53,6 @@ namespace Pazaar.Domain.Common
                 ThrowException<TException>($"{url} must be a valid URL.");
             }
         }
-
 
         public static void Against<TException>(object actualValue, object unexpectedValue)
             where TException : BaseDomainException, new()

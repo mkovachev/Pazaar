@@ -9,11 +9,6 @@ namespace Pazaar.Application.Validations
     {
         protected void ValidateName()
         {
-            RuleFor(i => i.Name)
-                .NotEmpty().WithMessage("Please add a image name")
-                .Length(NameMinLength, NameMaxLength)
-                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
-
             RuleFor(i => i.Url)
                 .NotEmpty().WithMessage("Please add a url")
                 .Length(ImageUrlMinLength, ImageUrlMaxLength)

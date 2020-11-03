@@ -26,7 +26,6 @@ namespace Pazaar.Infrastructure.Persistence
 
         public DbSet<Ad> Ads { get; set; } = default!;
         public DbSet<Category> Categories { get; set; } = default!;
-        public DbSet<Gallery> Galleries { get; set; } = default!;
         public DbSet<Image> Images { get; set; } = default!;
         public DbSet<Customer> Customers { get; set; } = default!;
 

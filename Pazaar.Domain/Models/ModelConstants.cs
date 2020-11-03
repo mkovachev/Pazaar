@@ -23,31 +23,22 @@
             public const int TitleMinLength = 10;
             public const int TitleMaxLength = 70;
 
+            public const decimal MinPrice = 0.1M;
+            public const decimal MaxPrice = 500000000.0M;
+
             public const int DescriptionMinLength = 20;
             public const int DescriptionMaxLength = 200;
 
-            public const decimal MinPrice = 0.1M;
-            public const decimal MaxPrice = 500000000.0M;
         }
 
         public class Category
         {
-            public const int NameMinLength = 5;
+            public const int NameMinLength = 3;
             public const int NameMaxLength = 30;
-        }
-
-        public class Galley
-        {
-            public const int NameMinLength = 5;
-            public const int NameMaxLength = 30;
-            public const int ImageUrlMinLength = 4;
-            public const int ImageUrlMaxLength = 2048;
         }
 
         public class Image
         {
-            public const int NameMinLength = 5;
-            public const int NameMaxLength = 30;
             public const int ImageUrlMinLength = 4;
             public const int ImageUrlMaxLength = 2048;
         }

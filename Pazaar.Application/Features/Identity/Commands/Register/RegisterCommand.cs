@@ -39,10 +39,7 @@ namespace Pazaar.Application.Features.Identity.Commands.Register
 
             var user = result.Data;
 
-            var customer = this.customerFactory
-                                        .WithName(request.Name)
-                                        .WithEmail(request.Email)
-                                        .Build();
+            var customer = this.customerFactory.Build();
 
             user.BecomeCustomer(customer);
 

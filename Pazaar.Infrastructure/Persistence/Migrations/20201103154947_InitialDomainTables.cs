@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
@@ -35,33 +35,13 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     CreatedBy = table.Column<string>(nullable: true),
                     DeleteBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: true),
-                    City = table.Column<string>(maxLength: 30, nullable: true),
-                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: true)
+                    PhoneNumber = table.Column<string>(maxLength: 20, nullable: false),
+                    City = table.Column<string>(maxLength: 30, nullable: false),
+                    ProfileImage = table.Column<string>(maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Galleries",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: true),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    DeleteBy = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Galleries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,6 +63,36 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ads",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    DeleteBy = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 70, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", maxLength: 500000000, nullable: false),
+                    Description = table.Column<string>(maxLength: 200, nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ads", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ads_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -118,7 +128,7 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ads",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -130,26 +140,16 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     DeleteBy = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(maxLength: 70, nullable: false),
-                    GalleryId = table.Column<int>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", maxLength: 500000000, nullable: false),
-                    Description = table.Column<string>(maxLength: 200, nullable: false),
-                    IsActive = table.Column<bool>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    AdId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ads", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ads_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Ads_Galleries_GalleryId",
-                        column: x => x.GalleryId,
-                        principalTable: "Galleries",
+                        name: "FK_Categories_Ads_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ads",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -167,17 +167,16 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     DeleteBy = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 30, nullable: false),
                     Url = table.Column<string>(maxLength: 2048, nullable: false),
-                    GalleryId = table.Column<int>(nullable: true)
+                    AdId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Images_Galleries_GalleryId",
-                        column: x => x.GalleryId,
-                        principalTable: "Galleries",
+                        name: "FK_Images_Ads_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ads",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -267,42 +266,10 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    LastModifiedBy = table.Column<string>(nullable: true),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    DeleteBy = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 30, nullable: false),
-                    AdId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Ads_AdId",
-                        column: x => x.AdId,
-                        principalTable: "Ads",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Ads_CustomerId",
                 table: "Ads",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ads_GalleryId",
-                table: "Ads",
-                column: "GalleryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -356,9 +323,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                 column: "AdId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_GalleryId",
+                name: "IX_Images_AdId",
                 table: "Images",
-                column: "GalleryId");
+                column: "AdId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -395,9 +362,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Galleries");
         }
     }
 }

@@ -10,7 +10,7 @@ using Pazaar.Infrastructure.Persistence;
 namespace Pazaar.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(PazaarDbContext))]
-    [Migration("20201102084005_InitialDomainTables")]
+    [Migration("20201103154947_InitialDomainTables")]
     partial class InitialDomainTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,6 +160,7 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
@@ -174,10 +175,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -194,10 +191,12 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("ProfileImage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 
@@ -233,9 +232,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int?>("GalleryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -260,8 +256,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("GalleryId");
 
                     b.ToTable("Ads");
                 });
@@ -309,39 +303,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Pazaar.Domain.Models.Ads.Gallery", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeleteBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Galleries");
-                });
-
             modelBuilder.Entity("Pazaar.Domain.Models.Ads.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -349,6 +310,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AdId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -361,9 +325,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GalleryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -372,11 +333,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
 
                     b.Property<string>("Url")
                         .IsRequired()
@@ -385,7 +341,7 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GalleryId");
+                    b.HasIndex("AdId");
 
                     b.ToTable("Images");
                 });
@@ -518,11 +474,6 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
                     b.HasOne("Pazaar.Domain.Model.Customer.Customer", null)
                         .WithMany("Ads")
                         .HasForeignKey("CustomerId");
-
-                    b.HasOne("Pazaar.Domain.Models.Ads.Gallery", "Gallery")
-                        .WithMany()
-                        .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Pazaar.Domain.Models.Ads.Category", b =>
@@ -534,9 +485,9 @@ namespace Pazaar.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Pazaar.Domain.Models.Ads.Image", b =>
                 {
-                    b.HasOne("Pazaar.Domain.Models.Ads.Gallery", null)
+                    b.HasOne("Pazaar.Domain.Models.Ads.Ad", null)
                         .WithMany("Images")
-                        .HasForeignKey("GalleryId");
+                        .HasForeignKey("AdId");
                 });
 
             modelBuilder.Entity("Pazaar.Infrastructure.Identity.User", b =>

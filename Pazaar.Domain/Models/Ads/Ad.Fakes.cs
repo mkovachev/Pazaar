@@ -18,9 +18,9 @@ namespace Pazaar.Domain.Models.Ads
         public static Ad GetAd()
                => new Faker<Ad>()
                    .CustomInstantiator(f => new Ad(
-                       f.Random.String(5),
+                       f.Random.String(10),
                        f.Random.Number(1, 100),
-                       f.Random.String(20)))
+                       f.Random.String(30)))
                    .Generate();
     }
 }

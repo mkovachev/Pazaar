@@ -17,10 +17,6 @@ namespace Pazaar.Infrastructure.Persistence.Configurations
               .IsRequired();
 
             builder
-             .Property(c => c.Email)
-             .IsRequired();
-
-            builder
               .Property(c => c.PhoneNumber)
               .HasMaxLength(PhoneNumberMaxLength);
 

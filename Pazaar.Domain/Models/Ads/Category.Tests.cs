@@ -1,10 +1,11 @@
-﻿using FluentAssertions;
+﻿using Bogus;
+using FluentAssertions;
+using Pazaar.Domain.Exceptions;
 using System;
 using Xunit;
 
 namespace Pazaar.Domain.Models.Ads
 {
-    using static ModelConstants.Category;
     public class CategoryTests
     {
         [Fact]
@@ -14,18 +15,29 @@ namespace Pazaar.Domain.Models.Ads
             Action act = () => new Category("");
 
             // Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Please add a category name");
+            act.Should().Throw<InvalidCategoryException>();
         }
 
         [Fact]
-        public void InvalidCategoryNameLength_Should_ThrowException()
+        public void InvalidCategoryMinNameLength_Should_ThrowException()
         {
             // Act
-            Action act = () => new Category("No");
+            Action act = () => new Category("x");
 
             // Assert
-            act.Should().Throw<ArgumentException>()
-                .WithMessage($"Name must be between {NameMinLength} and {NameMaxLength} characters");
+            act.Should().Throw<InvalidCategoryException>();
+        }
+
+        [Fact]
+        public void InvalidCategoryMaxNameLength_Should_ThrowException()
+        {
+            // Act
+            Action act = () => new Faker<Category>()
+                                .CustomInstantiator(f => new Category(f.Random.String(35)))
+                                .Generate();
+
+            // Assert
+            act.Should().Throw<InvalidCategoryException>();
         }
     }
 }
