@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pazaar.Application.Features.Customers.Queries;
 using Pazaar.Application.Features.Customers.Queries.Details;
 using System.Threading.Tasks;
 
