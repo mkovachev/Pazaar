@@ -1,4 +1,4 @@
-﻿namespace Pazaar.Application.Features.Customers.Queries
+﻿namespace Pazaar.Application.Features.Customers.Queries.Details
 {
     public class CustomerDetailsOutputModel
     {
