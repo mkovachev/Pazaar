@@ -1,12 +1,9 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyTested.AspNetCore.Mvc;
 using Pazaar.Application.Features.Ads;
 using Pazaar.Domain.Factories.Ads;
-using Pazaar.Infrastructure.Identity;
 
 namespace Pazaar.Startup
 {
@@ -23,7 +20,7 @@ namespace Pazaar.Startup
 
             ValidateServices(services);
 
-            services.ReplaceTransient<UserManager<User>>(_ => IdentityFakes.FakeUserManager);
+            //services.ReplaceTransient<UserManager<User>>(_ => IdentityFakes.FakeUserManager);
             //services.ReplaceTransient<IJwtTokenGenerator>(_ => JwtTokenGeneratorFakes.FakeJwtTokenGenerator);*/
         }
 
